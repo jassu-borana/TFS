@@ -19,6 +19,8 @@ const EPISODES = [
     duration: "1h 14m",
     tag: "Fintech",
     videoId: "FcNivo1CTLc",
+    views: "245K",
+    date: "2 weeks ago",
   },
   {
     number: "02",
@@ -28,6 +30,8 @@ const EPISODES = [
     duration: "58m",
     tag: "HealthTech",
     videoId: "Lu8vXrFQ6Ac",
+    views: "189K",
+    date: "1 month ago",
   },
   {
     number: "03",
@@ -37,6 +41,8 @@ const EPISODES = [
     duration: "1h 02m",
     tag: "EdTech",
     videoId: "-GuO0d2Gkdc",
+    views: "312K",
+    date: "3 weeks ago",
   },
   {
     number: "04",
@@ -46,6 +52,8 @@ const EPISODES = [
     duration: "1h 10m",
     tag: "Health",
     videoId: "D2TrM7Rx80Q",
+    views: "178K",
+    date: "5 days ago",
   },
   {
     number: "05",
@@ -55,6 +63,8 @@ const EPISODES = [
     duration: "52m",
     tag: "Lifestyle",
     videoId: "qXDTJ977yfg",
+    views: "156K",
+    date: "2 days ago",
   },
   {
     number: "06",
@@ -64,6 +74,8 @@ const EPISODES = [
     duration: "1h 18m",
     tag: "Health",
     videoId: "MA8dw1_f-yg",
+    views: "203K",
+    date: "1 week ago",
   },
   {
     number: "07",
@@ -73,6 +85,8 @@ const EPISODES = [
     duration: "1h 05m",
     tag: "Health",
     videoId: "pZU4vnleXIU",
+    views: "167K",
+    date: "4 days ago",
   },
 ];
 
@@ -148,112 +162,147 @@ function FeaturedPlayer({ ep }: { ep: (typeof EPISODES)[0] }) {
 
   return (
     <div
-      className="relative w-full overflow-hidden rounded-2xl"
+      className="relative w-full overflow-hidden rounded-3xl shadow-xl"
       style={{ aspectRatio: "16/9" }}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      {/* Mute / unmute indicator */}
-      <div
-        className="absolute top-4 right-4 z-30 flex items-center gap-1.5 px-3 py-1.5 rounded-full backdrop-blur-sm transition-all duration-300"
-        style={{
-          background: "rgba(0,0,0,0.45)",
-          border: "1px solid rgba(255,255,255,0.12)",
-          opacity: ready ? 1 : 0,
-        }}
-      >
-        {hovered ? (
-          /* Sound on icon */
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#e8c97e" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
-            <path d="M19.07 4.93a10 10 0 0 1 0 14.14" />
-            <path d="M15.54 8.46a5 5 0 0 1 0 7.07" />
-          </svg>
-        ) : (
-          /* Muted icon */
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.45)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
-            <line x1="23" y1="9" x2="17" y2="15" />
-            <line x1="17" y1="9" x2="23" y2="15" />
-          </svg>
-        )}
-        <span className="text-[10px] font-inter font-semibold tracking-widest uppercase" style={{ color: hovered ? "#e8c97e" : "rgba(255,255,255,0.4)" }}>
-          {hovered ? "Live" : "Muted"}
-        </span>
-      </div>
-      {/* Video */}
-      <div className="absolute inset-0">
-        <div
-          ref={playerDivRef}
+      {/* Animated border gradient */}
+      <div className="absolute -inset-0.5 bg-gradient-to-r from-amber-400 via-purple-400 to-pink-400 rounded-3xl opacity-30 group-hover:opacity-50 blur transition-opacity duration-500" />
+      
+      {/* Video container */}
+      <div className="relative w-full h-full rounded-3xl overflow-hidden bg-gray-100">
+        {/* Mute / unmute indicator */}
+        <motion.div
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: ready ? 1 : 0, y: ready ? 0 : -10 }}
+          className="absolute top-4 right-4 z-30 flex items-center gap-1.5 px-3 py-1.5 rounded-full backdrop-blur-md transition-all duration-300"
           style={{
-            position: "absolute",
-            top: "50%", left: "50%",
-            width: "130%", height: "130%",
-            transform: "translate(-50%, -50%)",
-            pointerEvents: "none",
+            background: "rgba(255, 255, 255, 0.9)",
+            border: "1px solid rgba(0,0,0,0.1)",
+            boxShadow: "0 4px 12px rgba(0,0,0,0.05)",
           }}
-        />
-        {/* Fade-in overlay */}
-        <div
-          className="absolute inset-0 bg-black transition-opacity duration-700"
-          style={{ opacity: ready ? 0 : 1 }}
-        />
-        {/* Gradient overlays */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-black/10" />
-        <div className="absolute inset-0 bg-gradient-to-r from-black/50 to-transparent" />
-      </div>
-
-      {/* Gold top bar */}
-      <div
-        className="absolute top-0 left-0 right-0 h-[3px] z-20"
-        style={{ background: "linear-gradient(90deg, #e8c97e, #f0e09a, transparent)" }}
-      />
-
-      {/* Content */}
-      <div className="absolute inset-0 z-20 flex flex-col justify-end p-7">
-        {/* Tag */}
-        <span className="inline-flex mb-3 px-3 py-1 rounded-full text-[11px] font-semibold tracking-widest uppercase bg-brand-accent/20 text-brand-accent border border-brand-accent/30 w-fit backdrop-blur-sm">
-          {ep.tag}
-        </span>
-
-        <AnimatePresence mode="wait">
+        >
           <motion.div
-            key={ep.number}
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -8 }}
-            transition={{ duration: 0.4 }}
+            animate={{ scale: hovered ? [1, 1.2, 1] : 1 }}
+            transition={{ duration: 1, repeat: hovered ? Infinity : 0 }}
           >
-            <h3 className="font-bebas text-4xl md:text-5xl tracking-wide text-white leading-none mb-1">
-              {ep.title}
-            </h3>
-            <p className="text-white/50 text-sm font-inter">
-              {ep.guest} &middot; {ep.role}
-            </p>
-          </motion.div>
-        </AnimatePresence>
-
-        <div className="mt-4 flex items-center gap-4">
-          <a
-            href={`https://youtu.be/${ep.videoId}`}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <motion.div
-              whileHover={{ scale: 1.08 }}
-              whileTap={{ scale: 0.94 }}
-              className="flex items-center gap-3 px-5 py-2.5 rounded-full font-inter text-sm font-semibold text-black transition-all"
-              style={{ background: "linear-gradient(135deg, #e8c97e, #f0e09a)" }}
-            >
-              <svg width="10" height="12" viewBox="0 0 12 14" fill="currentColor">
-                <path d="M0 0l12 7L0 14V0z" />
+            {hovered ? (
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#e8c97e" strokeWidth="2">
+                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
+                <path d="M19.07 4.93a10 10 0 0 1 0 14.14" />
+                <path d="M15.54 8.46a5 5 0 0 1 0 7.07" />
               </svg>
-              Watch Episode
-            </motion.div>
-          </a>
-          <span className="text-white/35 text-xs tracking-widest uppercase font-inter">
-            {ep.duration}
+            ) : (
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(0,0,0,0.4)" strokeWidth="2">
+                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
+                <line x1="23" y1="9" x2="17" y2="15" />
+                <line x1="17" y1="9" x2="23" y2="15" />
+              </svg>
+            )}
+          </motion.div>
+          <span className="text-[10px] font-semibold tracking-widest uppercase" style={{ color: hovered ? "#e8c97e" : "rgba(0,0,0,0.5)" }}>
+            {hovered ? "Sound On" : "Muted"}
           </span>
+        </motion.div>
+
+        {/* Video */}
+        <div className="absolute inset-0">
+          <div
+            ref={playerDivRef}
+            style={{
+              position: "absolute",
+              top: "50%", left: "50%",
+              width: "130%", height: "130%",
+              transform: "translate(-50%, -50%)",
+              pointerEvents: "none",
+            }}
+          />
+          
+          {/* Loading overlay */}
+          <motion.div
+            animate={{ opacity: ready ? 0 : 1 }}
+            className="absolute inset-0 bg-gray-50 flex items-center justify-center"
+          >
+            <div className="w-12 h-12 rounded-full border-2 border-amber-400/30 border-t-amber-400 animate-spin" />
+          </motion.div>
+        </div>
+
+        {/* Gradient overlays - softer for light theme */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
+        
+        {/* Gold top bar with animation */}
+        <motion.div
+          animate={{
+            width: ["0%", "100%", "0%"],
+          }}
+          transition={{
+            duration: 3,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+          className="absolute top-0 left-0 h-[2px] bg-gradient-to-r from-transparent via-amber-400 to-transparent"
+        />
+
+        {/* Content */}
+        <div className="absolute inset-0 z-20 flex flex-col justify-end p-8">
+          {/* Tag with animation */}
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.2 }}
+            className="mb-4"
+          >
+            <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-semibold tracking-wider bg-amber-100 text-amber-700 border border-amber-200">
+              <span className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse" />
+              {ep.tag} · {ep.views} views
+            </span>
+          </motion.div>
+
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={ep.number}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.5 }}
+            >
+              <h3 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-2">
+                {ep.title}
+              </h3>
+              <p className="text-white text-lg">
+                {ep.guest} · {ep.role}
+              </p>
+            </motion.div>
+          </AnimatePresence>
+
+          <div className="mt-6 flex items-center gap-4">
+            <motion.a
+              href={`https://youtu.be/${ep.videoId}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="group relative overflow-hidden rounded-full"
+            >
+              <div className="absolute inset-0 bg-gradient-to-r from-amber-400 to-amber-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur" />
+              <div className="relative flex items-center gap-3 px-6 py-3 rounded-full bg-gradient-to-r from-amber-400 to-amber-500 text-white font-semibold shadow-lg">
+                <svg width="12" height="14" viewBox="0 0 12 14" fill="currentColor">
+                  <path d="M0 0l12 7L0 14V0z" />
+                </svg>
+                Watch Episode
+                <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </div>
+            </motion.a>
+            
+            <div className="flex items-center gap-3 text-gray-500">
+              <span className="text-sm">{ep.duration}</span>
+              <span className="w-1 h-1 rounded-full bg-gray-300" />
+              <span className="text-sm">{ep.date}</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -278,47 +327,46 @@ function EpisodeRow({
       initial={{ opacity: 0, x: 20 }}
       whileInView={{ opacity: 1, x: 0 }}
       viewport={{ once: true }}
-      transition={{ duration: 0.5, delay: index * 0.07 }}
+      transition={{ duration: 0.5, delay: index * 0.05 }}
       className="group w-full text-left relative"
     >
-      {/* Row */}
-      <div
-        className="relative flex items-center gap-5 px-5 py-4 rounded-xl transition-all duration-300 overflow-hidden"
+      <motion.div
+        whileHover={{ x: 4 }}
+        className="relative flex items-center gap-4 px-4 py-3 rounded-xl transition-all duration-300"
         style={{
           background: isActive
-            ? "rgba(232,201,126,0.09)"
+            ? "linear-gradient(90deg, rgba(232,201,126,0.1) 0%, transparent 100%)"
             : "transparent",
-          border: isActive
-            ? "1px solid rgba(232,201,126,0.22)"
-            : "1px solid transparent",
         }}
       >
-        {/* Active left bar */}
-        <div
-          className="absolute left-0 top-3 bottom-3 w-[2px] rounded-full transition-all duration-300"
-          style={{ background: isActive ? "#e8c97e" : "transparent" }}
-        />
+        {/* Active indicator */}
+        {isActive && (
+          <motion.div
+            layoutId="activeEpisode"
+            className="absolute left-0 w-1 h-8 rounded-full bg-gradient-to-b from-amber-400 to-amber-500"
+          />
+        )}
 
-        {/* Hover shimmer */}
-        <div
-          className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none rounded-xl"
-          style={{ background: "rgba(255,255,255,0.02)" }}
-        />
+        {/* Number */}
+        <span
+          className="text-sm font-mono w-8"
+          style={{ color: isActive ? "#e8c97e" : "rgba(0,0,0,0.3)" }}
+        >
+          {ep.number}
+        </span>
 
-        {/* Thumbnail */}
-        <div className="relative shrink-0 w-16 h-10 rounded-lg overflow-hidden">
+        {/* Thumbnail with play overlay */}
+        <div className="relative shrink-0 w-16 h-10 rounded-lg overflow-hidden shadow-md">
           <img
             src={`https://img.youtube.com/vi/${ep.videoId}/mqdefault.jpg`}
             alt={ep.title}
-            className="w-full h-full object-cover"
-            style={{ filter: isActive ? "none" : "brightness(0.55) saturate(0.5)" }}
+            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
           />
-          {/* Play icon overlay */}
           <div
             className="absolute inset-0 flex items-center justify-center transition-opacity duration-300"
-            style={{ opacity: isActive ? 1 : 0, background: "rgba(0,0,0,0.35)" }}
+            style={{ opacity: isActive ? 1 : 0, background: "rgba(0,0,0,0.3)" }}
           >
-            <svg width="8" height="9" viewBox="0 0 12 14" fill="#e8c97e">
+            <svg width="8" height="10" viewBox="0 0 12 14" fill="#e8c97e">
               <path d="M0 0l12 7L0 14V0z" />
             </svg>
           </div>
@@ -327,40 +375,24 @@ function EpisodeRow({
         {/* Info */}
         <div className="flex-1 min-w-0">
           <p
-            className="font-bebas text-base tracking-widest leading-none truncate transition-colors duration-300"
-            style={{ color: isActive ? "#e8c97e" : "rgba(20,20,20,0.75)" }}
+            className="font-semibold text-sm truncate transition-colors duration-300"
+            style={{ color: isActive ? "#e8c97e" : "rgba(0,0,0,0.9)" }}
           >
             {ep.title}
           </p>
           <p
-            className="text-xs font-inter mt-1 truncate transition-colors duration-300"
-            style={{ color: isActive ? "rgba(20,20,20,0.55)" : "rgba(20,20,20,0.35)" }}
+            className="text-xs truncate transition-colors duration-300"
+            style={{ color: isActive ? "rgba(0,0,0,0.6)" : "rgba(0,0,0,0.4)" }}
           >
-            {ep.guest}
+            {ep.guest} · {ep.role}
           </p>
         </div>
 
-        {/* Right: tag + duration */}
-        <div className="shrink-0 flex flex-col items-end gap-1">
-          <span
-            className="text-[10px] font-semibold tracking-widest uppercase px-2 py-0.5 rounded-full"
-            style={{
-              background: isActive ? "rgba(232,201,126,0.18)" : "rgba(0,0,0,0.06)",
-              color: isActive ? "#e8c97e" : "rgba(20,20,20,0.35)",
-            }}
-          >
-            {ep.tag}
-          </span>
-          <span className="text-[11px] font-inter" style={{ color: "rgba(20,20,20,0.3)" }}>
-            {ep.duration}
-          </span>
-        </div>
-      </div>
-
-      {/* Divider */}
-      {!isActive && (
-        <div className="mx-5 h-px" style={{ background: "rgba(0,0,0,0.06)" }} />
-      )}
+        {/* Duration */}
+        <span className="text-xs font-mono" style={{ color: "rgba(0,0,0,0.3)" }}>
+          {ep.duration}
+        </span>
+      </motion.div>
     </motion.button>
   );
 }
@@ -371,97 +403,183 @@ export default function EpisodesSection() {
   const ep = EPISODES[active];
 
   return (
-    <section id="episodes" className="bg-brand-cream py-28 px-8 md:px-16 lg:px-24 overflow-hidden">
-      <div className="max-w-7xl mx-auto">
+    <section className="relative overflow-hidden bg-gradient-to-b from-gray-50 via-white to-gray-50 py-28 px-4 md:px-8 lg:px-16">
+      {/* Animated background */}
+      <div className="absolute inset-0">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(232,201,126,0.08),transparent_50%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,rgba(168,85,247,0.05),transparent_50%)]" />
+        
+        {/* Grid pattern */}
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#00000008_1px,transparent_1px),linear-gradient(to_bottom,#00000008_1px,transparent_1px)] bg-[size:32px_32px]" />
+      </div>
 
+      <div className="max-w-7xl mx-auto relative z-10">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.6 }}
-          className="mb-14"
+          viewport={{ once: true }}
+          className="mb-16 text-center md:text-left"
         >
-          <p className="text-sm font-semibold tracking-[0.25em] text-brand-dark/50 uppercase mb-3">
-            Listen
-          </p>
-          <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
-            <h2 className="font-bebas text-7xl sm:text-8xl leading-none tracking-wide text-brand-dark">
-              FEATURED<br />EPISODES
-            </h2>
-            <a
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-gray-200 shadow-sm mb-6"
+          >
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75" />
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-amber-400" />
+            </span>
+            <span className="text-xs font-medium tracking-wider text-gray-600 uppercase">
+              Latest Episodes
+            </span>
+          </motion.div>
+
+          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
+            <div>
+              <h2 className="text-6xl md:text-7xl lg:text-8xl font-bold">
+                <span className="text-gray-900">
+                  Featured
+                </span>
+                <br />
+                <span className="bg-gradient-to-r from-amber-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">
+                  Episodes
+                </span>
+              </h2>
+              <p className="text-gray-600 text-lg mt-4 max-w-2xl">
+                Insights from founders who've built and scaled successful startups
+              </p>
+            </div>
+            
+            <motion.a
               href="https://youtube.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="group flex items-center gap-2 text-sm font-inter font-semibold text-brand-dark/40 hover:text-brand-dark transition-colors duration-300 mb-2"
+              whileHover={{ x: 5 }}
+              className="group flex items-center gap-2 text-gray-500 hover:text-gray-900 transition-colors duration-300"
             >
-              View all episodes
+              <span className="text-sm font-medium">View all episodes</span>
               <svg
-                width="14" height="14" viewBox="0 0 24 24" fill="none"
+                width="16" height="16" viewBox="0 0 24 24" fill="none"
                 stroke="currentColor" strokeWidth="2"
-                className="group-hover:translate-x-1 transition-transform duration-300"
+                className="group-hover:translate-x-1 transition-transform"
               >
                 <path d="M5 12h14M12 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
-            </a>
+            </motion.a>
           </div>
         </motion.div>
 
-        {/* Main: player + tracklist */}
-        <div className="grid grid-cols-1 lg:grid-cols-[1fr_360px] gap-6 lg:gap-8 items-start">
-
+        {/* Main content */}
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_400px] gap-8 lg:gap-12 items-start">
           {/* Left: Featured player */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7 }}
           >
             <FeaturedPlayer ep={ep} />
 
-            {/* Episode counter */}
-            <div className="mt-5 flex items-center gap-3">
-              <span className="font-bebas text-5xl leading-none text-brand-dark/08 select-none">
-                {ep.number}
-              </span>
-              <div className="flex-1 h-px bg-brand-dark/10" />
-              <span className="text-xs font-inter text-brand-dark/30 tracking-widest uppercase">
-                {String(active + 1).padStart(2, "0")} of {String(EPISODES.length).padStart(2, "0")}
-              </span>
+            {/* Episode stats */}
+            <div className="mt-6 flex items-center justify-between">
+              <div className="flex items-center gap-4">
+                <span className="text-5xl font-bold bg-gradient-to-r from-amber-500 to-amber-600 bg-clip-text text-transparent">
+                  {ep.number}
+                </span>
+                <div className="h-8 w-px bg-gray-200" />
+                <div>
+                  <p className="text-gray-500 text-xs">Episode stats</p>
+                  <p className="text-gray-700 text-sm">{ep.views} views · {ep.date}</p>
+                </div>
+              </div>
+              
+              <div className="flex items-center gap-2">
+                {[...Array(5)].map((_, i) => (
+                  <motion.div
+                    key={i}
+                    animate={{
+                      scale: [1, 1.2, 1],
+                      opacity: [0.3, 1, 0.3],
+                    }}
+                    transition={{
+                      duration: 2,
+                      repeat: Infinity,
+                      delay: i * 0.4,
+                    }}
+                    className="w-1.5 h-1.5 rounded-full bg-amber-400/50"
+                  />
+                ))}
+              </div>
             </div>
           </motion.div>
 
-          {/* Right: Tracklist */}
+          {/* Right: Episode list */}
           <motion.div
-            initial={{ opacity: 0, x: 20 }}
+            initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.15 }}
-            className="flex flex-col gap-0.5"
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="bg-white rounded-3xl p-6 border border-gray-200 shadow-lg"
           >
             {/* List header */}
-            <div className="flex items-center justify-between px-5 pb-3 mb-1 border-b border-brand-dark/08">
-              <p className="text-[11px] font-inter font-semibold tracking-[0.2em] uppercase text-brand-dark/30">
-                All Episodes
-              </p>
-              <p className="text-[11px] font-inter text-brand-dark/25">
-                {EPISODES.length} episodes
-              </p>
+            <div className="flex items-center justify-between mb-6 pb-4 border-b border-gray-200">
+              <div className="flex items-center gap-3">
+                <div className="w-8 h-8 rounded-full bg-gradient-to-r from-amber-400 to-amber-500 flex items-center justify-center text-white font-bold shadow-md">
+                  {EPISODES.length}
+                </div>
+                <div>
+                  <p className="text-gray-900 font-semibold">All Episodes</p>
+                  <p className="text-gray-500 text-xs">Click to play</p>
+                </div>
+              </div>
+              
+              <div className="flex gap-1">
+                {["All", "Recent", "Popular"].map((filter) => (
+                  <button
+                    key={filter}
+                    className="px-3 py-1 text-xs rounded-full bg-gray-100 text-gray-600 hover:bg-gray-200 transition-colors"
+                  >
+                    {filter}
+                  </button>
+                ))}
+              </div>
             </div>
 
-            {EPISODES.map((item, i) => (
-              <EpisodeRow
-                key={item.number}
-                ep={item}
-                isActive={i === active}
-                onClick={() => setActive(i)}
-                index={i}
-              />
-            ))}
+            {/* Episode rows */}
+            <div className="space-y-1 max-h-[500px] overflow-y-auto custom-scrollbar pr-2">
+              {EPISODES.map((item, i) => (
+                <EpisodeRow
+                  key={item.number}
+                  ep={item}
+                  isActive={i === active}
+                  onClick={() => setActive(i)}
+                  index={i}
+                />
+              ))}
+            </div>
           </motion.div>
-
         </div>
       </div>
+
+      {/* Custom scrollbar styles */}
+      <style jsx>{`
+        .custom-scrollbar::-webkit-scrollbar {
+          width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+          background: rgba(0, 0, 0, 0.05);
+          border-radius: 20px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+          background: rgba(232, 201, 126, 0.5);
+          border-radius: 20px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+          background: rgba(255, 216, 125, 0.7);
+        }
+      `}</style>
     </section>
   );
 }

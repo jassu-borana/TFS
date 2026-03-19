@@ -1,18 +1,21 @@
 "use client";
 
-import { useCallback, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import Navbar from "@/components/Navbar";
 import HeroVideo from "@/components/HeroVideo";
 import TravelingBottle from "@/components/TravelingBottle";
 import AboutSection from "@/components/AboutSection";
-import WhySection from "@/components/WhySection";
 import HostSection from "@/components/HostSection";
 import LatestPodcastSection from "@/components/LatestPodcastSection";
 import EpisodesSection from "@/components/EpisodesSection";
 import InsightsSection from "@/components/InsightsSection";
 import TestimonialsSection from "@/components/TestimonialsSection";
+import QuotesSection from "@/components/QuotesSection";
+import WhatYouGetSection from "@/components/WhatYouGetSection";
+import ProcessSection from "@/components/ProcessSection";
 import FinalCTA from "@/components/FinalCTA";
 import ScrollTextOverlay from "@/components/ScrollTextOverlay";
+import { ApplyGuestContent } from "@/components/ApplyGuestContent";
 import { useScroll, useMotionValueEvent } from "framer-motion";
 
 export default function HomePage() {
@@ -31,25 +34,28 @@ export default function HomePage() {
   return (
     <main>
       <Navbar />
-
       <HeroVideo />
 
-      {/* Content sections wrapper for scroll tracking */}
       <div ref={contentRef}>
         <AboutSection />
-        <WhySection />
-        <HostSection />
         <LatestPodcastSection />
+        <HostSection />
         <EpisodesSection />
+        <QuotesSection />
+        <WhatYouGetSection />
+        <ProcessSection />
         <InsightsSection />
         <TestimonialsSection />
+
+        {/* ✅ Apply section seedha homepage mein */}
+        <section id="apply">
+          <ApplyGuestContent />
+        </section>
+
         <FinalCTA />
       </div>
 
-      {/* Global Antigravity Object */}
       <TravelingBottle />
-      
-      {/* Scroll Text Overlay based on progress */}
       <ScrollTextOverlay progress={scrollProgress} />
     </main>
   );

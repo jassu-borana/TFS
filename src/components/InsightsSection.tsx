@@ -1,11 +1,14 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useState } from "react";
 
 type Insight = {
   number: string;
   headline: string;
   quote: string;
+  category: string;
+  icon: string;
 };
 
 const INSIGHTS: Insight[] = [
@@ -14,85 +17,236 @@ const INSIGHTS: Insight[] = [
     headline: "Start Before You're Ready",
     quote:
       "The founders who win aren't the ones who had the perfect plan. They're the ones who started, adapted, and refused to quit.",
+    category: "MINDSET",
+    icon: "🚀",
   },
   {
     number: "02",
     headline: "Your Network Is Your Net Worth",
     quote:
       "Every breakthrough funding round, critical hire, or game-changing partnership traced back to a relationship. Build people, not just products.",
+    category: "RELATIONSHIPS",
+    icon: "🤝",
   },
   {
     number: "03",
     headline: "Failure Is the Curriculum",
     quote:
       "No MBA teaches what a failed launch does. Embrace the lessons embedded in every setback — they are your competitive moat.",
+    category: "RESILIENCE",
+    icon: "💪",
   },
   {
     number: "04",
     headline: "Growth Over Comfort",
     quote:
       "Scaling a company is personal growth in disguise. You'll be forced to confront your weaknesses, and that's exactly where the magic happens.",
+    category: "GROWTH",
+    icon: "📈",
   },
 ];
 
-function InsightCard({ item }: { item: Insight }) {
+function InsightCard({ item, index }: { item: Insight; index: number }) {
+  const [isHovered, setIsHovered] = useState(false);
+
   return (
-    <div className="flex gap-5 items-start">
-      <span className="font-bebas text-7xl md:text-8xl text-white/10 leading-none select-none shrink-0 w-20">
-        {item.number}
-      </span>
+    <motion.div 
+      className="relative group"
+      onHoverStart={() => setIsHovered(true)}
+      onHoverEnd={() => setIsHovered(false)}
+      initial={{ opacity: 0, x: index % 2 === 0 ? -20 : 20 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.6, delay: index * 0.1 }}
+    >
+      {/* Background glow on hover */}
+      <motion.div 
+        className="absolute -inset-4 bg-gradient-to-r from-brand-accent/0 via-brand-accent/5 to-brand-accent/0 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+        animate={isHovered ? { scale: 1.05 } : { scale: 1 }}
+      />
+      
+      <div className="relative flex gap-6 items-start p-6 rounded-2xl border border-white/5 bg-white/[0.02] backdrop-blur-sm hover:border-brand-accent/20 transition-all duration-500">
+        {/* Left section with number and icon */}
+        <div className="flex flex-col items-center gap-3 shrink-0">
+          <motion.span 
+            className="font-bebas text-8xl text-white/5 leading-none select-none"
+            animate={isHovered ? { scale: 1.1, color: "rgba(232,201,126,0.2)" } : { scale: 1 }}
+            transition={{ duration: 0.3 }}
+          >
+            {item.number}
+          </motion.span>
+          <motion.div 
+            className="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center text-2xl border border-white/10 group-hover:border-brand-accent/30 group-hover:bg-brand-accent/10 transition-all duration-300"
+            animate={isHovered ? { rotate: 360, scale: 1.1 } : { rotate: 0, scale: 1 }}
+            transition={{ duration: 0.5 }}
+          >
+            {item.icon}
+          </motion.div>
+        </div>
 
-      <div>
-        <h3 className="font-bebas text-3xl md:text-4xl tracking-wide text-white mb-4">
-          {item.headline}
-        </h3>
+        {/* Content */}
+        <div className="flex-1">
+          {/* Category tag */}
+          <motion.div 
+            className="inline-block mb-3"
+            animate={isHovered ? { x: 5 } : { x: 0 }}
+          >
+            <span className="text-[0.65rem] font-semibold tracking-[0.2em] text-brand-accent/50 bg-brand-accent/5 px-3 py-1 rounded-full">
+              {item.category}
+            </span>
+          </motion.div>
 
-        <p className="text-white/60 text-lg leading-relaxed max-w-xl">
-          &ldquo;{item.quote}&rdquo;
-        </p>
+          {/* Headline with animated underline */}
+          <div className="relative inline-block mb-4">
+            <h3 className="font-bebas text-4xl md:text-5xl tracking-wide text-white">
+              {item.headline}
+            </h3>
+            <motion.div 
+              className="absolute -bottom-1 left-0 h-0.5 bg-brand-accent/30 rounded-full"
+              initial={{ width: 0 }}
+              whileInView={{ width: "100%" }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.3 + index * 0.1 }}
+            />
+          </div>
+
+          {/* Quote with animated opening */}
+          <motion.p 
+            className="text-white/60 text-lg leading-relaxed max-w-xl relative pl-4 border-l-2 border-white/10 group-hover:border-brand-accent/30 transition-colors duration-300"
+            animate={isHovered ? { x: 5, color: "rgba(255,255,255,0.8)" } : { x: 0 }}
+          >
+            <span className="text-brand-accent text-2xl mr-1 font-serif">"</span>
+            {item.quote}
+            <span className="text-brand-accent text-2xl ml-1 font-serif">"</span>
+          </motion.p>
+
+          {/* Read more indicator on hover */}
+          <motion.div 
+            className="mt-4 flex items-center gap-2 text-brand-accent/60 text-sm"
+            initial={{ opacity: 0 }}
+            animate={isHovered ? { opacity: 1, x: 5 } : { opacity: 0, x: 0 }}
+            transition={{ duration: 0.2 }}
+          >
+            <span>Listen to episode</span>
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+            </svg>
+          </motion.div>
+        </div>
       </div>
-    </div>
+    </motion.div>
   );
 }
 
 export default function InsightsSection() {
   return (
-    <section className="bg-brand-dark py-28 px-8 md:px-16 lg:px-24">
-      <div className="max-w-3xl mx-auto relative z-30">
+    <section className="relative bg-brand-dark py-28 px-8 md:px-16 lg:px-24 overflow-hidden">
+      
+      {/* Animated background grid */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:4rem_4rem]" />
+        
+        {/* Gradient orbs */}
+        <motion.div 
+          className="absolute top-20 right-0 w-96 h-96 bg-brand-accent/5 rounded-full blur-3xl"
+          animate={{ 
+            x: [0, 100, 0],
+            y: [0, -50, 0],
+          }}
+          transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+        />
+        <motion.div 
+          className="absolute bottom-20 left-0 w-96 h-96 bg-brand-accent/5 rounded-full blur-3xl"
+          animate={{ 
+            x: [0, -100, 0],
+            y: [0, 50, 0],
+          }}
+          transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+        />
+      </div>
 
-        {/* Heading */}
+      <div className="max-w-4xl mx-auto relative z-30">
+        {/* Heading with decorative elements */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="mb-20 text-center"
+          className="mb-20 text-center relative"
         >
-          <p className="text-sm font-semibold tracking-[0.25em] text-brand-accent/70 uppercase mb-3">
-            Wisdom
-          </p>
+          {/* Top decorative line */}
+          <motion.div 
+            className="flex justify-center gap-2 mb-6"
+            initial={{ scale: 0 }}
+            whileInView={{ scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+          >
+            <div className="w-12 h-0.5 bg-brand-accent/30 rounded-full" />
+            <div className="w-4 h-0.5 bg-brand-accent/60 rounded-full" />
+            <div className="w-2 h-0.5 bg-brand-accent rounded-full" />
+          </motion.div>
 
-          <h2 className="font-bebas text-7xl sm:text-8xl leading-none tracking-wide text-white">
-            FOUNDER<br />INSIGHTS
-          </h2>
+          <motion.p 
+            className="text-sm font-semibold tracking-[0.3em] text-brand-accent/70 uppercase mb-4"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+          >
+            Wisdom from the trenches
+          </motion.p>
+
+          <motion.h2 
+            className="font-bebas text-7xl sm:text-8xl leading-none tracking-wide text-white relative inline-block"
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, delay: 0.4 }}
+          >
+            FOUNDER INSIGHTS
+            <motion.div 
+              className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 w-24 h-1 bg-gradient-to-r from-transparent via-brand-accent to-transparent rounded-full"
+              initial={{ width: 0, opacity: 0 }}
+              whileInView={{ width: 96, opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.8 }}
+            />
+          </motion.h2>
         </motion.div>
 
-        {/* Rows */}
-        <div className="space-y-20">
+        {/* Insights cards with connector lines */}
+        <div className="relative">
+          {/* Vertical connector line */}
+          <div className="absolute left-[3.25rem] top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-brand-accent/20 to-transparent hidden md:block" />
+
           {INSIGHTS.map((item, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.7 }}
-              className="border-t border-white/10 pt-10"
-            >
-              <InsightCard item={item} />
-            </motion.div>
+            <div key={i} className="relative mb-12 last:mb-0">
+              {/* Connector dot */}
+              <motion.div 
+                className="absolute left-[3.25rem] -translate-x-1/2 w-3 h-3 rounded-full bg-brand-accent/30 border-2 border-brand-accent/50 hidden md:block"
+                style={{ top: '3rem' }}
+                initial={{ scale: 0 }}
+                whileInView={{ scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: i * 0.1 }}
+              />
+              
+              <InsightCard item={item} index={i} />
+            </div>
           ))}
         </div>
 
+        {/* Bottom CTA */}
+        <motion.div 
+          className="mt-20 text-center"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.5 }}
+        >
+          
+        </motion.div>
       </div>
     </section>
   );

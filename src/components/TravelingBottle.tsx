@@ -21,35 +21,37 @@ export default function TravelingBottle() {
 
   /*
   Animation Path
-
-  0px - 1000px   : Center
-  1000px - 2000px: Move LEFT
-  2000px - 3000px: Move RIGHT
-  3000px - 4000px: Fade Out
+  
+  0px - 100px    : Pop up
+  100px - 300px  : Center
+  300px - 1000px : Left move
+  1000px - 1800px: Right move
+  1800px - 2500px: Left move (-8vw)
+  2500px - 2600px: Gayab
   */
 
   const x = useTransform(
     smoothScrollY,
-    [0, 1000, 2000, 3000],
-    ["0vw", "0vw", "-30vw", "30vw"]
+    [0, 100, 300, 1000, 1800, 2500, 2600, 3000],
+    ["0vw", "0vw", "0vw", "-30vw", "30vw", "-8vw", "-8vw", "-8vw"]
   );
 
   const rotate = useTransform(
     smoothScrollY,
-    [0, 1000, 2000, 3000],
-    [0, 0, -8, 8]
+    [0, 100, 300, 1000, 1800, 2500, 2600, 3000],
+    [0, 0, 0, -8, 8, -8, -8, -8]
   );
 
   const scale = useTransform(
     smoothScrollY,
-    [0, 1000, 2000, 3000, 4000],
-    [0.8, 1, 1.05, 1.05, 0.9]
+    [0, 100, 300, 1000, 1800, 2500, 2600, 3000],
+    [0, 1, 1, 1.05, 1.05, 1.05, 0, 0]
   );
 
   const opacity = useTransform(
     smoothScrollY,
-    [0, 100, 3000, 4000],
-    [0, 1, 1, 0]
+    [0, 100, 300, 2500, 2600, 3000],
+    [0, 1, 1, 1, 0, 0]
   );
 
   if (!mounted) return null;

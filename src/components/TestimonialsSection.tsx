@@ -76,7 +76,7 @@ export default function TestimonialsSection() {
             Voices
           </p>
           <h2 className="text-center font-bebas text-7xl sm:text-8xl leading-none tracking-wide text-white">
-            <u>WHAT FOUNDERS ARE SAYING</u>
+            WHAT FOUNDERS ARE<br/> SAYING
           </h2>
         </motion.div>
 

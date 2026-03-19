@@ -41,7 +41,7 @@ export default function HostSection() {
                 animate={{ y: [0, -6, 0] }}
                 transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
               >
-                HOST
+                TFS
               </motion.div>
             </div>
           </motion.div>
