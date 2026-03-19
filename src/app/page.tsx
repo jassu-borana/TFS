@@ -6,6 +6,7 @@ import HeroVideo from "@/components/HeroVideo";
 import TravelingBottle from "@/components/TravelingBottle";
 import AboutSection from "@/components/AboutSection";
 import HostSection from "@/components/HostSection";
+import Whythispodcast from "@/components/Whythispodcast";
 import LatestPodcastSection from "@/components/LatestPodcastSection";
 import EpisodesSection from "@/components/EpisodesSection";
 import InsightsSection from "@/components/InsightsSection";
@@ -40,6 +41,7 @@ export default function HomePage() {
         <AboutSection />
         <LatestPodcastSection />
         <HostSection />
+        <Whythispodcast />
         <EpisodesSection />
         <QuotesSection />
         <WhatYouGetSection />

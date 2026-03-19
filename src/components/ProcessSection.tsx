@@ -8,28 +8,24 @@ const STEPS = [
     number: "01",
     label: "Selection Process",
     color: "#e8c97e",
-    gradient: "from-amber-400/20 to-amber-600/5",
     items: [
       {
         icon: "📋",
         title: "Fill out the Podcast Form",
-        tag: "5 minutes",
-        desc: "Takes just 5 minutes. Tell us about your startup, traction, and vision.",
-        sub: "Quick and focused form",
+        tag: "5 min",
+        desc: "Tell us about your startup, traction, and vision.",
       },
       {
         icon: "🔍",
-        title: "We Review Your Podcast Form",
-        tag: "48 hours",
-        desc: "Our team goes through your story within 48 hours. We look for clarity, traction, and founder mindset.",
-        sub: "Comprehensive review process",
+        title: "We Review Your Form",
+        tag: "48 hrs",
+        desc: "Our team reviews your story within 48 hours.",
       },
       {
         icon: "📞",
         title: "We Let You Know",
-        tag: "Email + Call",
+        tag: "Email/Call",
         desc: "You'll get an email + call from us.",
-        sub: "Clear communication on status",
       },
     ],
   },
@@ -37,21 +33,18 @@ const STEPS = [
     number: "02",
     label: "Preparation & Booking",
     color: "#a78bfa",
-    gradient: "from-purple-400/20 to-purple-600/5",
     items: [
       {
         icon: "☎️",
-        title: "Quick 15-Minute Call With Our Team",
-        tag: "15 minutes",
-        desc: "You'll speak with our production team to align on the process, shoot expectations, and final Q&A.",
-        sub: "Production alignment call",
+        title: "15-Minute Call With Team",
+        tag: "15 min",
+        desc: "Align on process and shoot expectations.",
       },
       {
         icon: "💳",
-        title: "Pay the Remaining Amount",
+        title: "Pay Remaining Amount",
         tag: "Payment",
-        desc: "Once you're ready, you'll pay the remaining ₹99,000 + GST to lock your podcast shoot date in Bangalore.",
-        sub: "Secure your podcast shoot slot",
+        desc: "Pay ₹99,000 + GST to lock your date.",
       },
     ],
   },
@@ -59,60 +52,59 @@ const STEPS = [
     number: "03",
     label: "Shooting & Publishing",
     color: "#4ade80",
-    gradient: "from-green-400/20 to-green-600/5",
     items: [
       {
         icon: "🎙️",
-        title: "Your Studio Interview Day",
-        tag: "90 minutes",
-        desc: "We shoot your 90-minute deep-dive podcast — professionally filmed with multi-camera setup.",
-        sub: "Professional studio recording session",
+        title: "Studio Interview Day",
+        tag: "90 min",
+        desc: "90-minute deep-dive with multi-camera setup.",
       },
       {
         icon: "🚀",
         title: "Go Live & Get Amplified",
-        tag: "6–8 weeks",
-        desc: "Your episode goes live across all platforms and we run paid amplification to maximise reach.",
-        sub: "Full distribution + paid promotion",
+        tag: "6-8 weeks",
+        desc: "Episode goes live across all platforms.",
       },
     ],
   },
 ];
 
 export default function ProcessSection() {
-  const [hoveredStep, setHoveredStep] = useState<number | null>(null);
+  const [activeStep, setActiveStep] = useState<number | null>(null);
+  const [activeItem, setActiveItem] = useState<number | null>(null);
 
   return (
     <section className="relative overflow-hidden py-28 px-4 bg-black">
-      {/* Animated background grid */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:48px_48px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]" />
-      
-      {/* Floating orbs */}
-      <motion.div
-        animate={{
-          scale: [1, 1.2, 1],
-          opacity: [0.3, 0.5, 0.3],
-        }}
-        transition={{
-          duration: 8,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-        className="absolute top-20 left-1/2 -translate-x-1/2 w-[600px] h-[600px] rounded-full bg-gradient-to-r from-amber-500/5 via-purple-500/5 to-green-500/5 blur-3xl"
-      />
+      {/* Black Grid Background */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff08_1px,transparent_1px),linear-gradient(to_bottom,#ffffff08_1px,transparent_1px)] bg-[size:48px_48px]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,transparent_0%,rgba(0,0,0,0.5)_100%)]" />
+        
+        {/* Animated orbs */}
+        <motion.div 
+          className="absolute top-20 left-20 w-96 h-96 bg-[#e8c97e]/5 rounded-full blur-3xl"
+          animate={{ x: [0, 50, 0], y: [0, -30, 0] }}
+          transition={{ duration: 15, repeat: Infinity }}
+        />
+        <motion.div 
+          className="absolute bottom-20 right-20 w-96 h-96 bg-[#a78bfa]/5 rounded-full blur-3xl"
+          animate={{ x: [0, -50, 0], y: [0, 30, 0] }}
+          transition={{ duration: 18, repeat: Infinity }}
+        />
+      </div>
 
-      <div className="max-w-6xl mx-auto relative z-10">
-        {/* Enhanced Heading */}
-        <div className="text-center mb-24">
+      <div className="max-w-5xl mx-auto relative z-10">
+        {/* Heading */}
+        <div className="text-center mb-16">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 backdrop-blur-sm mb-8"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-white/20 backdrop-blur-sm mb-6"
           >
-            <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
-            <span className="text-xs font-medium tracking-wider text-white/60 uppercase">
-              Your Journey Starts Here
+            <span className="w-2 h-2 rounded-full bg-[#e8c97e] animate-pulse" />
+            <span className="text-xs font-medium tracking-wider text-white/80 uppercase">
+              Your Journey Map
             </span>
           </motion.div>
 
@@ -120,197 +112,223 @@ export default function ProcessSection() {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
-            className="text-5xl md:text-7xl lg:text-8xl font-bold mb-6"
+            className="text-5xl md:text-7xl font-bold mb-4"
           >
-            <span className="bg-gradient-to-r from-white via-white to-white/60 bg-clip-text text-transparent">
-              Simple 3-Step
-            </span>
+            <span className="text-white">The Path to</span>
             <br />
-            <span className="bg-gradient-to-r from-amber-400 via-purple-400 to-green-400 bg-clip-text text-transparent">
-              Podcast Process
+            <span className="bg-gradient-to-r from-[#e8c97e] via-[#a78bfa] to-[#4ade80] bg-clip-text text-transparent">
+              Podcast Stardom
             </span>
           </motion.h2>
-
-          <motion.p
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
-            className="text-white/40 text-lg max-w-2xl mx-auto"
-          >
-            From unknown to industry leader in 3 easy steps
-          </motion.p>
         </div>
 
-        {/* Modern Timeline Layout */}
+        {/* Vertical Roadmap */}
         <div className="relative">
-          {/* Central Line (Desktop) */}
-          <div className="hidden lg:block absolute left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-white/10 to-transparent" />
+          {/* Main vertical line - The Road */}
+          <div className="absolute left-[2.5rem] md:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-[#e8c97e] via-[#a78bfa] to-[#4ade80] transform -translate-x-1/2" />
 
           {/* Steps */}
-          <div className="space-y-16 lg:space-y-0">
+          <div className="space-y-16">
             {STEPS.map((step, stepIndex) => (
               <motion.div
                 key={step.number}
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.6 }}
-                onHoverStart={() => setHoveredStep(stepIndex)}
-                onHoverEnd={() => setHoveredStep(null)}
-                className={`relative lg:flex lg:items-center ${
-                  stepIndex % 2 === 0 ? "" : "lg:flex-row-reverse"
-                }`}
+                transition={{ duration: 0.6, delay: stepIndex * 0.2 }}
+                className="relative"
               >
-                {/* Step Number - Desktop */}
-                <div className="hidden lg:block absolute left-1/2 -translate-x-1/2 w-12 h-12">
+                {/* Step Marker - Milestone */}
+                <div className="absolute left-[2.5rem] md:left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20">
                   <motion.div
                     animate={{
-                      scale: hoveredStep === stepIndex ? 1.2 : 1,
-                      backgroundColor: hoveredStep === stepIndex ? step.color : "rgba(255,255,255,0.05)",
+                      scale: activeStep === stepIndex ? 1.2 : 1,
+                      boxShadow: activeStep === stepIndex ? `0 0 30px ${step.color}` : "none",
                     }}
-                    className="w-full h-full rounded-full flex items-center justify-center font-bold text-sm border border-white/10 backdrop-blur-sm"
-                    style={{ color: step.color }}
+                    onHoverStart={() => setActiveStep(stepIndex)}
+                    onHoverEnd={() => setActiveStep(null)}
+                    className="relative"
                   >
-                    {step.number}
-                  </motion.div>
-                </div>
-
-                {/* Content Side */}
-                <div className={`lg:w-1/2 ${stepIndex % 2 === 0 ? "lg:pr-12" : "lg:pl-12"}`}>
-                  {/* Step Header - Mobile */}
-                  <div className="lg:hidden flex items-center gap-3 mb-6">
+                    {/* Pulse effect */}
+                    <motion.div
+                      animate={{ scale: [1, 1.5, 1] }}
+                      transition={{ duration: 2, repeat: Infinity }}
+                      className="absolute inset-0 rounded-full"
+                      style={{ background: `${step.color}40` }}
+                    />
+                    
+                    {/* Main marker */}
                     <div
-                      className="w-10 h-10 rounded-full flex items-center justify-center font-bold text-sm"
-                      style={{ background: `${step.color}20`, color: step.color }}
+                      className="relative w-14 h-14 rounded-2xl flex items-center justify-center text-xl font-bold border-4 border-black shadow-xl"
+                      style={{
+                        background: `linear-gradient(135deg, ${step.color}, ${step.color}dd)`,
+                        color: "#000",
+                      }}
                     >
                       {step.number}
                     </div>
-                    <h3 className="text-xl font-semibold text-white/90">{step.label}</h3>
-                  </div>
-
-                  {/* Items Container */}
-                  <div className="space-y-4">
-                    {step.items.map((item, itemIndex) => (
-                      <motion.div
-                        key={item.title}
-                        initial={{ opacity: 0, x: stepIndex % 2 === 0 ? -30 : 30 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.5, delay: itemIndex * 0.1 }}
-                        className="group relative"
-                      >
-                        {/* Glass card */}
-                        <div className="relative p-6 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10 hover:bg-white/10 transition-all duration-300">
-                          {/* Glow effect on hover */}
-                          <div
-                            className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-20 transition-opacity duration-500 blur-xl"
-                            style={{ background: step.color }}
-                          />
-                          
-                          <div className="relative flex gap-4">
-                            {/* Icon container */}
-                            <div
-                              className="w-12 h-12 rounded-xl flex items-center justify-center text-xl shrink-0 transition-transform group-hover:scale-110 duration-300"
-                              style={{
-                                background: `linear-gradient(135deg, ${step.color}20, ${step.color}05)`,
-                                border: `1px solid ${step.color}30`,
-                              }}
-                            >
-                              {item.icon}
-                            </div>
-
-                            <div className="flex-1">
-                              <div className="flex items-center gap-2 flex-wrap mb-2">
-                                <h4 className="font-semibold text-white/90">{item.title}</h4>
-                                <span
-                                  className="text-xs px-2.5 py-1 rounded-full font-medium"
-                                  style={{
-                                    background: `${step.color}15`,
-                                    color: step.color,
-                                    border: `1px solid ${step.color}20`,
-                                  }}
-                                >
-                                  {item.tag}
-                                </span>
-                              </div>
-                              <p className="text-white/50 text-sm leading-relaxed">{item.desc}</p>
-                              <p className="text-white/30 text-xs mt-2 flex items-center gap-1">
-                                <span className="w-1 h-1 rounded-full bg-white/30" />
-                                {item.sub}
-                              </p>
-                            </div>
-                          </div>
-                        </div>
-
-                        {/* Connector line between items */}
-                        {itemIndex < step.items.length - 1 && (
-                          <div className="absolute left-6 -bottom-4 w-px h-4 bg-gradient-to-b from-white/20 to-transparent" />
-                        )}
-                      </motion.div>
-                    ))}
-                  </div>
+                  </motion.div>
                 </div>
 
-                {/* Empty side for desktop layout */}
-                <div className="hidden lg:block lg:w-1/2" />
+                {/* Content - Alternating left/right on desktop */}
+                <div className={`flex flex-col md:flex-row ${stepIndex % 2 === 0 ? '' : 'md:flex-row-reverse'}`}>
+                  {/* Left/right spacing */}
+                  <div className="hidden md:block md:w-1/2" />
+                  
+                  {/* Content card */}
+                  <div className={`w-full md:w-1/2 ${stepIndex % 2 === 0 ? 'md:pr-12' : 'md:pl-12'}`}>
+                    {/* Step label */}
+                    <motion.div
+                      animate={{ x: activeStep === stepIndex ? 10 : 0 }}
+                      className="mb-4 md:mb-6"
+                    >
+                      <h3 className="text-2xl md:text-3xl font-bold" style={{ color: step.color }}>
+                        {step.label}
+                      </h3>
+                    </motion.div>
+
+                    {/* Items */}
+                    <div className="space-y-4">
+                      {step.items.map((item, itemIndex) => (
+                        <motion.div
+                          key={item.title}
+                          initial={{ opacity: 0, x: stepIndex % 2 === 0 ? -20 : 20 }}
+                          whileInView={{ opacity: 1, x: 0 }}
+                          viewport={{ once: true }}
+                          transition={{ duration: 0.5, delay: itemIndex * 0.1 }}
+                          onHoverStart={() => setActiveItem(itemIndex)}
+                          onHoverEnd={() => setActiveItem(null)}
+                          className="group relative"
+                        >
+                          {/* Connector line to main road */}
+                          <div
+                            className="absolute left-[-2rem] top-1/2 w-8 h-0.5 hidden md:block"
+                            style={{
+                              background: `linear-gradient(90deg, ${step.color}, transparent)`,
+                            }}
+                          />
+
+                          {/* Item card */}
+                          <motion.div
+                            animate={{
+                              y: activeItem === itemIndex ? -2 : 0,
+                              scale: activeItem === itemIndex ? 1.02 : 1,
+                            }}
+                            className="relative p-5 rounded-xl bg-white/5 backdrop-blur-sm border-2 transition-all duration-300"
+                            style={{
+                              borderColor: activeItem === itemIndex ? step.color : "rgba(255,255,255,0.1)",
+                              background: activeItem === itemIndex ? `${step.color}10` : "rgba(255,255,255,0.05)",
+                            }}
+                          >
+                            <div className="flex items-start gap-3">
+                              {/* Icon */}
+                              <div
+                                className="w-10 h-10 rounded-lg flex items-center justify-center text-xl shrink-0"
+                                style={{
+                                  background: `${step.color}20`,
+                                  border: `1px solid ${step.color}40`,
+                                }}
+                              >
+                                {item.icon}
+                              </div>
+
+                              <div className="flex-1">
+                                <div className="flex items-center justify-between gap-2 mb-1">
+                                  <h4 className="font-semibold text-white">{item.title}</h4>
+                                  <span
+                                    className="text-[10px] px-2 py-1 rounded-full font-medium whitespace-nowrap"
+                                    style={{
+                                      background: `${step.color}20`,
+                                      color: step.color,
+                                      border: `1px solid ${step.color}40`,
+                                    }}
+                                  >
+                                    {item.tag}
+                                  </span>
+                                </div>
+                                <p className="text-white/40 text-xs leading-relaxed">
+                                  {item.desc}
+                                </p>
+                              </div>
+                            </div>
+
+                            {/* Progress indicator */}
+                            <motion.div
+                              initial={{ width: "0%" }}
+                              animate={{ width: activeItem === itemIndex ? "100%" : "0%" }}
+                              transition={{ duration: 0.3 }}
+                              className="absolute bottom-0 left-0 h-0.5 rounded-b-xl"
+                              style={{ background: `linear-gradient(90deg, ${step.color}, transparent)` }}
+                            />
+                          </motion.div>
+                        </motion.div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
               </motion.div>
             ))}
           </div>
+
+          {/* Start and End markers */}
+          <div className="absolute left-[2.5rem] md:left-1/2 transform -translate-x-1/2 -top-6">
+            <div className="relative">
+              <div className="w-3 h-3 rounded-full bg-[#e8c97e] animate-ping absolute" />
+              <div className="w-3 h-3 rounded-full bg-[#e8c97e] relative" />
+              <span className="absolute left-6 top-1/2 -translate-y-1/2 text-xs text-white/40 whitespace-nowrap">
+                Start Here
+              </span>
+            </div>
+          </div>
+
+          <div className="absolute left-[2.5rem] md:left-1/2 transform -translate-x-1/2 -bottom-6">
+            <div className="relative">
+              <div className="w-3 h-3 rounded-full bg-[#4ade80] animate-ping absolute" />
+              <div className="w-3 h-3 rounded-full bg-[#4ade80] relative" />
+              <span className="absolute left-6 top-1/2 -translate-y-1/2 text-xs text-white/40 whitespace-nowrap">
+                Episode Live
+              </span>
+            </div>
+          </div>
         </div>
 
-        {/* Enhanced CTA */}
+        {/* Distance indicator */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.8 }}
+          className="text-center mt-20"
+        >
+          <div className="inline-flex items-center gap-4 px-6 py-3 rounded-2xl bg-white/5 border border-white/10">
+            <div className="flex items-center gap-2">
+              <div className="w-2 h-2 rounded-full bg-[#e8c97e]" />
+              <div className="w-2 h-2 rounded-full bg-[#a78bfa]" />
+              <div className="w-2 h-2 rounded-full bg-[#4ade80]" />
+            </div>
+            <span className="text-white/40 text-sm">3 stops · 2-3 months total journey</span>
+          </div>
+        </motion.div>
+
+        {/* CTA */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ delay: 0.4 }}
-          className="text-center mt-24"
+          transition={{ delay: 1 }}
+          className="text-center mt-16"
         >
-          <div className="relative inline-block group">
-            {/* Glow effect */}
-            <div className="absolute -inset-1 bg-gradient-to-r from-amber-400 via-purple-400 to-green-400 rounded-full blur-xl opacity-0 group-hover:opacity-50 transition-opacity duration-500" />
-            
-            <motion.a
-              href="/apply"
-              className="relative inline-flex items-center gap-3 px-10 py-4 rounded-full bg-black text-white font-semibold text-lg border border-white/20 overflow-hidden"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.97 }}
-            >
-              {/* Animated background */}
-              <motion.div
-                animate={{
-                  x: ["0%", "100%"],
-                }}
-                transition={{
-                  duration: 2,
-                  repeat: Infinity,
-                  ease: "linear",
-                }}
-                className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -skew-x-12"
-              />
-              
-              <span>Start Your Journey</span>
-              <svg
-                className="w-5 h-5 group-hover:translate-x-1 transition-transform"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M17 8l4 4m0 0l-4 4m4-4H3"
-                />
-              </svg>
-            </motion.a>
-          </div>
-          
-          <p className="text-white/30 text-sm mt-4">
-            Join hundreds of founders who've shared their story
-          </p>
+          <motion.a
+            href="/apply"
+            className="inline-flex items-center gap-3 px-10 py-5 rounded-2xl bg-gradient-to-r from-[#e8c97e] via-[#a78bfa] to-[#4ade80] text-black font-semibold text-lg"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.97 }}
+          >
+            Start Your Journey
+            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </motion.a>
         </motion.div>
       </div>
     </section>

@@ -17,7 +17,6 @@ const INSIGHTS: Insight[] = [
     headline: "Start Before You're Ready",
     quote:
       "The founders who win aren't the ones who had the perfect plan. They're the ones who started, adapted, and refused to quit.",
-    category: "MINDSET",
     icon: "🚀",
   },
   {
@@ -25,7 +24,7 @@ const INSIGHTS: Insight[] = [
     headline: "Your Network Is Your Net Worth",
     quote:
       "Every breakthrough funding round, critical hire, or game-changing partnership traced back to a relationship. Build people, not just products.",
-    category: "RELATIONSHIPS",
+   
     icon: "🤝",
   },
   {
@@ -33,7 +32,7 @@ const INSIGHTS: Insight[] = [
     headline: "Failure Is the Curriculum",
     quote:
       "No MBA teaches what a failed launch does. Embrace the lessons embedded in every setback — they are your competitive moat.",
-    category: "RESILIENCE",
+  
     icon: "💪",
   },
   {
@@ -41,7 +40,7 @@ const INSIGHTS: Insight[] = [
     headline: "Growth Over Comfort",
     quote:
       "Scaling a company is personal growth in disguise. You'll be forced to confront your weaknesses, and that's exactly where the magic happens.",
-    category: "GROWTH",
+    
     icon: "📈",
   },
 ];
@@ -140,29 +139,57 @@ function InsightCard({ item, index }: { item: Insight; index: number }) {
 
 export default function InsightsSection() {
   return (
-    <section className="relative bg-brand-dark py-28 px-8 md:px-16 lg:px-24 overflow-hidden">
+    <section className="relative bg-black py-28 px-8 md:px-16 lg:px-24 overflow-hidden">
       
-      {/* Animated background grid */}
+      {/* Black Grid Background - Yeh main cheez hai */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:4rem_4rem]" />
+        {/* Dark grid pattern */}
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff08_1px,transparent_1px),linear-gradient(to_bottom,#ffffff08_1px,transparent_1px)] bg-[size:48px_48px]" />
         
-        {/* Gradient orbs */}
+        {/* Radial gradient overlay for depth */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,transparent_0%,rgba(0,0,0,0.5)_100%)]" />
+        
+        {/* Animated gradient orbs */}
         <motion.div 
-          className="absolute top-20 right-0 w-96 h-96 bg-brand-accent/5 rounded-full blur-3xl"
+          className="absolute top-20 right-0 w-96 h-96 bg-[#e8c97e]/5 rounded-full blur-3xl"
           animate={{ 
             x: [0, 100, 0],
             y: [0, -50, 0],
+            scale: [1, 1.2, 1],
           }}
-          transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+          transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
         />
         <motion.div 
-          className="absolute bottom-20 left-0 w-96 h-96 bg-brand-accent/5 rounded-full blur-3xl"
+          className="absolute bottom-20 left-0 w-96 h-96 bg-[#e8c97e]/5 rounded-full blur-3xl"
           animate={{ 
             x: [0, -100, 0],
             y: [0, 50, 0],
+            scale: [1.2, 1, 1.2],
           }}
-          transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+          transition={{ duration: 18, repeat: Infinity, ease: "linear" }}
         />
+        
+        {/* Floating particles */}
+        {[...Array(30)].map((_, i) => (
+          <motion.div
+            key={i}
+            animate={{
+              y: [0, -30, 0],
+              x: [0, 20, 0],
+              opacity: [0, 0.2, 0],
+            }}
+            transition={{
+              duration: 8 + i,
+              repeat: Infinity,
+              delay: i * 0.2,
+            }}
+            className="absolute w-1 h-1 rounded-full bg-[#e8c97e]/30"
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+            }}
+          />
+        ))}
       </div>
 
       <div className="max-w-4xl mx-auto relative z-30">
@@ -182,13 +209,13 @@ export default function InsightsSection() {
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            <div className="w-12 h-0.5 bg-brand-accent/30 rounded-full" />
-            <div className="w-4 h-0.5 bg-brand-accent/60 rounded-full" />
-            <div className="w-2 h-0.5 bg-brand-accent rounded-full" />
+            <div className="w-12 h-0.5 bg-[#e8c97e]/30 rounded-full" />
+            <div className="w-4 h-0.5 bg-[#e8c97e]/60 rounded-full" />
+            <div className="w-2 h-0.5 bg-[#e8c97e] rounded-full" />
           </motion.div>
 
           <motion.p 
-            className="text-sm font-semibold tracking-[0.3em] text-brand-accent/70 uppercase mb-4"
+            className="text-sm font-semibold tracking-[0.3em] text-[#e8c97e]/70 uppercase mb-4"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -206,7 +233,7 @@ export default function InsightsSection() {
           >
             FOUNDER INSIGHTS
             <motion.div 
-              className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 w-24 h-1 bg-gradient-to-r from-transparent via-brand-accent to-transparent rounded-full"
+              className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 w-24 h-1 bg-gradient-to-r from-transparent via-[#e8c97e] to-transparent rounded-full"
               initial={{ width: 0, opacity: 0 }}
               whileInView={{ width: 96, opacity: 1 }}
               viewport={{ once: true }}
@@ -218,13 +245,13 @@ export default function InsightsSection() {
         {/* Insights cards with connector lines */}
         <div className="relative">
           {/* Vertical connector line */}
-          <div className="absolute left-[3.25rem] top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-brand-accent/20 to-transparent hidden md:block" />
+          <div className="absolute left-[3.25rem] top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-[#e8c97e]/20 to-transparent hidden md:block" />
 
           {INSIGHTS.map((item, i) => (
             <div key={i} className="relative mb-12 last:mb-0">
               {/* Connector dot */}
               <motion.div 
-                className="absolute left-[3.25rem] -translate-x-1/2 w-3 h-3 rounded-full bg-brand-accent/30 border-2 border-brand-accent/50 hidden md:block"
+                className="absolute left-[3.25rem] -translate-x-1/2 w-3 h-3 rounded-full bg-[#e8c97e]/30 border-2 border-[#e8c97e]/50 hidden md:block"
                 style={{ top: '3rem' }}
                 initial={{ scale: 0 }}
                 whileInView={{ scale: 1 }}
@@ -245,7 +272,18 @@ export default function InsightsSection() {
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.5 }}
         >
-          
+          {/* CTA Button */}
+          <motion.a
+            href="/apply"
+            className="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-gradient-to-r from-[#e8c97e] to-[#f0d89a] text-black font-semibold group"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            <span>Share Your Insight</span>
+            <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </motion.a>
         </motion.div>
       </div>
     </section>

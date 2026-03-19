@@ -8,43 +8,49 @@ const ITEMS = [
     emoji: "🎙️",
     title: "90-Minute Deep Dive Interview",
     desc: "Professional in-studio recording with our top-rated host + Full copyright for your marketing campaigns",
-    gradient: "from-amber-500/20 to-amber-600/5",
-    icon: "M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z",
+    color: "#e8c97e",
+    bgColor: "rgba(232,201,126,0.1)",
+    borderColor: "rgba(232,201,126,0.2)",
   },
   {
     emoji: "🎬",
     title: "Professional Video Production",
     desc: "Multi-camera studio shoot with NETFLIX style cinematic editing by India's leading editors",
-    gradient: "from-purple-500/20 to-purple-600/5",
-    icon: "M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z",
+    color: "#a78bfa",
+    bgColor: "rgba(167,139,250,0.1)",
+    borderColor: "rgba(167,139,250,0.2)",
   },
   {
     emoji: "📱",
     title: "Social Media Amplification Package",
     desc: "6 professionally edited reels/shorts + organic distribution across all major platforms",
-    gradient: "from-blue-500/20 to-blue-600/5",
-    icon: "M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z",
+    color: "#4ade80",
+    bgColor: "rgba(74,222,128,0.1)",
+    borderColor: "rgba(74,222,128,0.2)",
   },
   {
     emoji: "📊",
     title: "Startup Community Reach",
     desc: "Paid distribution to high-intent founder & investor groups via Meta/Google/LinkedIn ads",
-    gradient: "from-green-500/20 to-green-600/5",
-    icon: "M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z",
+    color: "#f87171",
+    bgColor: "rgba(248,113,113,0.1)",
+    borderColor: "rgba(248,113,113,0.2)",
   },
   {
     emoji: "©️",
     title: "Lifetime Content Usage Rights",
     desc: "Own the content forever — use in ads, client proposals, decks, landing pages, or pitch materials",
-    gradient: "from-red-500/20 to-red-600/5",
-    icon: "M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253",
+    color: "#60a5fa",
+    bgColor: "rgba(96,165,250,0.1)",
+    borderColor: "rgba(96,165,250,0.2)",
   },
   {
     emoji: "🌐",
     title: "TFD Power Network Access",
     desc: "Direct sharing with our private network of unicorn founders, startup CEOs, and top operators",
-    gradient: "from-indigo-500/20 to-indigo-600/5",
-    icon: "M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z",
+    color: "#fbbf24",
+    bgColor: "rgba(251,191,36,0.1)",
+    borderColor: "rgba(251,191,36,0.2)",
   },
 ];
 
@@ -53,53 +59,71 @@ export default function WhatYouGetSection() {
 
   return (
     <section className="relative overflow-hidden py-28 px-4 bg-black">
-      {/* Animated background */}
-      <div className="absolute inset-0">
-        {/* Gradient orbs */}
-        <motion.div
-          animate={{
+      {/* Black Grid Background */}
+      <div className="absolute inset-0 pointer-events-none">
+        {/* Grid pattern */}
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff08_1px,transparent_1px),linear-gradient(to_bottom,#ffffff08_1px,transparent_1px)] bg-[size:48px_48px]" />
+        
+        {/* Radial gradient for depth */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,transparent_0%,rgba(0,0,0,0.5)_100%)]" />
+        
+        {/* Animated orbs */}
+        <motion.div 
+          className="absolute top-20 left-20 w-96 h-96 bg-[#e8c97e]/5 rounded-full blur-3xl"
+          animate={{ 
+            x: [0, 50, 0],
+            y: [0, -30, 0],
             scale: [1, 1.2, 1],
-            opacity: [0.3, 0.5, 0.3],
           }}
-          transition={{
-            duration: 8,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-          className="absolute top-20 -left-20 w-[500px] h-[500px] rounded-full bg-gradient-to-r from-amber-500/10 via-purple-500/10 to-transparent blur-3xl"
+          transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
         />
-        <motion.div
-          animate={{
-            scale: [1, 1.3, 1],
-            opacity: [0.2, 0.4, 0.2],
+        <motion.div 
+          className="absolute bottom-20 right-20 w-96 h-96 bg-[#e8c97e]/5 rounded-full blur-3xl"
+          animate={{ 
+            x: [0, -50, 0],
+            y: [0, 30, 0],
+            scale: [1.2, 1, 1.2],
           }}
-          transition={{
-            duration: 10,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: 1,
-          }}
-          className="absolute bottom-20 -right-20 w-[600px] h-[600px] rounded-full bg-gradient-to-l from-blue-500/10 via-green-500/10 to-transparent blur-3xl"
+          transition={{ duration: 18, repeat: Infinity, ease: "linear" }}
         />
         
-        {/* Grid pattern */}
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:32px_32px]" />
+        {/* Floating particles */}
+        {[...Array(30)].map((_, i) => (
+          <motion.div
+            key={i}
+            animate={{
+              y: [0, -40, 0],
+              x: [0, 20, 0],
+              opacity: [0, 0.2, 0],
+            }}
+            transition={{
+              duration: 10 + i,
+              repeat: Infinity,
+              delay: i * 0.3,
+            }}
+            className="absolute w-1 h-1 rounded-full bg-[#e8c97e]/30"
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+            }}
+          />
+        ))}
       </div>
 
-      <div className="max-w-6xl mx-auto relative z-10">
+      <div className="max-w-7xl mx-auto relative z-10">
         {/* Enhanced Heading */}
-        <div className="text-center mb-20">
+        <div className="text-center mb-16">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 backdrop-blur-sm mb-8"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-white/20 backdrop-blur-sm mb-6"
           >
             <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75" />
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-amber-400" />
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#e8c97e] opacity-75" />
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-[#e8c97e]" />
             </span>
-            <span className="text-xs font-medium tracking-wider text-white/60 uppercase">
+            <span className="text-xs font-medium tracking-wider text-white/80 uppercase">
               Complete Package
             </span>
           </motion.div>
@@ -109,13 +133,13 @@ export default function WhatYouGetSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="text-5xl md:text-7xl font-bold mb-6"
+            className="text-5xl md:text-7xl font-bold mb-4"
           >
-            <span className="bg-gradient-to-r from-white to-white/60 bg-clip-text text-transparent">
+            <span className="text-white">
               Everything You Get
             </span>
             <br />
-            <span className="bg-gradient-to-r from-amber-400 via-purple-400 to-green-400 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-[#e8c97e] via-purple-400 to-pink-400 bg-clip-text text-transparent">
               All-In-One Package
             </span>
           </motion.h2>
@@ -125,89 +149,106 @@ export default function WhatYouGetSection() {
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="text-white/40 text-lg max-w-2xl mx-auto"
+            className="text-white/50 text-lg max-w-2xl mx-auto"
           >
             Everything you need to build authority and visibility — all included in one comprehensive package
           </motion.p>
         </div>
 
-        {/* Items grid with enhanced cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+        {/* Items grid - 3x2 layout for 6 cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {ITEMS.map((item, i) => (
             <motion.div
               key={item.title}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.2 }}
-              transition={{ duration: 0.5, delay: i * 0.05 }}
+              transition={{ duration: 0.5, delay: i * 0.1 }}
               onHoverStart={() => setHoveredIndex(i)}
               onHoverEnd={() => setHoveredIndex(null)}
-              className="group relative"
+              className="group relative h-full"
             >
-              {/* Card background with gradient */}
-              <div className="absolute inset-0 bg-gradient-to-br opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl blur-xl"
-                style={{
-                  background: `linear-gradient(135deg, ${item.gradient.split(' ')[0].replace('from-', '')}, ${item.gradient.split(' ')[1].replace('to-', '')})`
+              {/* Card glow on hover */}
+              <motion.div
+                animate={{
+                  opacity: hoveredIndex === i ? 0.5 : 0,
+                  scale: hoveredIndex === i ? 1.1 : 1,
                 }}
+                transition={{ duration: 0.3 }}
+                className="absolute -inset-2 rounded-3xl blur-2xl"
+                style={{ background: item.color }}
               />
               
               {/* Main card */}
-              <div className="relative h-full p-6 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10 hover:bg-white/10 transition-all duration-300 overflow-hidden">
-                {/* Animated shine effect */}
-                <motion.div
-                  animate={{
-                    x: ["0%", "200%"],
-                  }}
-                  transition={{
-                    duration: 2,
-                    repeat: Infinity,
-                    ease: "linear",
-                    delay: i * 0.2,
-                  }}
-                  className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent skew-x-12"
-                />
-
-                {/* Icon container with emoji */}
-                <div className="relative mb-4">
-                  <div className="w-14 h-14 rounded-xl flex items-center justify-center text-2xl mb-2 bg-gradient-to-br from-white/10 to-white/5 border border-white/10 group-hover:scale-110 transition-transform duration-300">
+              <motion.div
+                animate={{
+                  y: hoveredIndex === i ? -4 : 0,
+                }}
+                transition={{ duration: 0.3 }}
+                className="relative h-full p-8 rounded-2xl bg-white/5 backdrop-blur-sm border-2 transition-all duration-300 overflow-hidden"
+                style={{
+                  borderColor: hoveredIndex === i ? item.color : "rgba(255,255,255,0.1)",
+                  background: hoveredIndex === i ? item.bgColor : "rgba(255,255,255,0.05)",
+                }}
+              >
+                {/* Icon container */}
+                <div className="relative mb-6">
+                  <div 
+                    className="w-16 h-16 rounded-xl flex items-center justify-center text-3xl transition-all duration-300"
+                    style={{
+                      background: item.bgColor,
+                      border: `2px solid ${item.borderColor}`,
+                      color: item.color,
+                    }}
+                  >
                     {item.emoji}
                   </div>
                   
-                  {/* Floating indicator */}
-                  <motion.div
-                    animate={{
-                      scale: hoveredIndex === i ? [1, 1.2, 1] : 1,
-                    }}
-                    transition={{ duration: 0.3 }}
-                    className="absolute -top-1 -right-1 w-3 h-3 rounded-full"
-                    style={{
-                      background: `linear-gradient(135deg, ${item.gradient.split(' ')[0].replace('from-', '')}, ${item.gradient.split(' ')[1].replace('to-', '')})`
-                    }}
-                  />
+                  {/* Floating indicator dot */}
+                  {hoveredIndex === i && (
+                    <motion.div
+                      initial={{ scale: 0 }}
+                      animate={{ scale: 1 }}
+                      className="absolute -top-1 -right-1 w-4 h-4 rounded-full border-2 border-black"
+                      style={{ background: item.color }}
+                    />
+                  )}
                 </div>
 
                 {/* Title */}
-                <h3 className="text-lg font-semibold text-white/90 mb-2 group-hover:text-white transition-colors">
+                <h3 className="text-xl font-bold text-white mb-3 group-hover:text-white transition-colors">
                   {item.title}
                 </h3>
 
                 {/* Description */}
-                <p className="text-white/40 text-sm leading-relaxed group-hover:text-white/60 transition-colors">
+                <p className="text-white/50 text-sm leading-relaxed">
                   {item.desc}
                 </p>
 
-                {/* Bottom accent */}
-                <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                  style={{
-                    background: `linear-gradient(90deg, ${item.gradient.split(' ')[0].replace('from-', '')}, ${item.gradient.split(' ')[1].replace('to-', '')})`
-                  }}
+                {/* Bottom accent line */}
+                <motion.div
+                  initial={{ width: "0%" }}
+                  animate={{ width: hoveredIndex === i ? "100%" : "0%" }}
+                  transition={{ duration: 0.3 }}
+                  className="absolute bottom-0 left-0 h-1 rounded-b-2xl"
+                  style={{ background: `linear-gradient(90deg, ${item.color}, transparent)` }}
                 />
-              </div>
+
+                {/* Corner accents */}
+                <div 
+                  className="absolute top-4 left-4 w-4 h-4 border-l-2 border-t-2 rounded-tl-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                  style={{ borderColor: item.color }}
+                />
+                <div 
+                  className="absolute bottom-4 right-4 w-4 h-4 border-r-2 border-b-2 rounded-br-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                  style={{ borderColor: item.color }}
+                />
+              </motion.div>
             </motion.div>
           ))}
         </div>
 
-        {/* Stats section */}
+        {/* Stats section - 2x2 grid */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -216,17 +257,21 @@ export default function WhatYouGetSection() {
           className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-4"
         >
           {[
-            { value: "100+", label: "Founders Featured", color: "from-amber-400 to-amber-600" },
-            { value: "50M+", label: "Total Reach", color: "from-purple-400 to-purple-600" },
-            { value: "6-8", label: "Weeks to Launch", color: "from-green-400 to-green-600" },
-            { value: "100%", label: "Content Ownership", color: "from-blue-400 to-blue-600" },
+            { value: "100+", label: "Founders Featured", color: "#e8c97e" },
+            { value: "50M+", label: "Total Reach", color: "#a78bfa" },
+            { value: "6-8", label: "Weeks to Launch", color: "#4ade80" },
+            { value: "100%", label: "Content Ownership", color: "#60a5fa" },
           ].map((stat, i) => (
-            <div key={i} className="text-center p-4 rounded-xl bg-white/5 border border-white/10">
-              <div className={`text-2xl md:text-3xl font-bold bg-gradient-to-r ${stat.color} bg-clip-text text-transparent`}>
+            <motion.div
+              key={i}
+              whileHover={{ y: -4, scale: 1.02 }}
+              className="text-center p-6 rounded-2xl bg-white/5 border-2 border-white/10 hover:border-[#e8c97e]/30 transition-all backdrop-blur-sm"
+            >
+              <div className="text-3xl md:text-4xl font-bold mb-2" style={{ color: stat.color }}>
                 {stat.value}
               </div>
-              <div className="text-white/40 text-xs mt-1">{stat.label}</div>
-            </div>
+              <div className="text-white/40 text-sm">{stat.label}</div>
+            </motion.div>
           ))}
         </motion.div>
 
@@ -250,26 +295,26 @@ export default function WhatYouGetSection() {
                 repeat: Infinity,
                 ease: "easeInOut",
               }}
-              className="absolute -inset-3 bg-gradient-to-r from-amber-400 via-purple-400 to-green-400 rounded-full blur-xl opacity-30"
+              className="absolute -inset-3 bg-gradient-to-r from-[#e8c97e] via-purple-400 to-pink-400 rounded-full blur-xl opacity-30"
             />
             
             <motion.a
               href="/apply"
-              className="relative inline-flex items-center gap-3 px-10 py-5 rounded-full bg-black text-white font-semibold text-lg border border-white/20 overflow-hidden"
+              className="relative inline-flex items-center gap-3 px-10 py-5 rounded-2xl bg-gradient-to-r from-[#e8c97e] to-[#f0d89a] text-black font-semibold text-lg overflow-hidden group"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.97 }}
             >
-              {/* Animated background gradient */}
+              {/* Shine effect */}
               <motion.div
                 animate={{
-                  x: ["-100%", "100%"],
+                  x: ["-100%", "200%"],
                 }}
                 transition={{
                   duration: 2,
                   repeat: Infinity,
                   ease: "linear",
                 }}
-                className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent skew-x-12"
+                className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent skew-x-12"
               />
               
               <span className="relative">Claim Your Spot</span>
@@ -294,17 +339,17 @@ export default function WhatYouGetSection() {
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ delay: 0.6 }}
-            className="mt-6 flex items-center justify-center gap-4 text-sm"
+            className="mt-6 flex items-center justify-center gap-6 text-sm"
           >
-            <div className="flex items-center gap-2 text-white/30">
+            <div className="flex items-center gap-2 text-white/40">
               <svg className="w-4 h-4 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
               </svg>
               <span>Limited slots available</span>
             </div>
-            <div className="w-px h-4 bg-white/10" />
-            <div className="flex items-center gap-2 text-white/30">
-              <svg className="w-4 h-4 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <div className="w-px h-4 bg-white/20" />
+            <div className="flex items-center gap-2 text-white/40">
+              <svg className="w-4 h-4 text-[#e8c97e]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
               <span>Next batch starting soon</span>

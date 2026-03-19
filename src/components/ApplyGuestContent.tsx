@@ -181,13 +181,39 @@ ${form.whatYouDo}
   // Success Screen
   if (submitted) {
     return (
-      <div className="min-h-screen flex items-center justify-center px-4 py-12"
-        style={{ background: "radial-gradient(circle at 50% 50%, #0f0f0f, #0a0a0a)" }}>
+      <div className="min-h-screen flex items-center justify-center px-4 py-12 relative overflow-hidden bg-black">
+        {/* Black Grid Background - Exactly like other sections */}
+        <div className="absolute inset-0 pointer-events-none">
+          {/* Grid pattern - white lines with low opacity */}
+          <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff15_1px,transparent_1px),linear-gradient(to_bottom,#ffffff15_1px,transparent_1px)] bg-[size:48px_48px]" />
+          
+          {/* Radial gradient for depth */}
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,transparent_30%,rgba(0,0,0,0.8)_100%)]" />
+          
+          {/* Animated orbs */}
+          <motion.div 
+            className="absolute top-20 left-20 w-96 h-96 bg-[#e8c97e]/10 rounded-full blur-3xl"
+            animate={{ 
+              x: [0, 50, 0],
+              y: [0, -30, 0],
+            }}
+            transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
+          />
+          <motion.div 
+            className="absolute bottom-20 right-20 w-96 h-96 bg-[#e8c97e]/10 rounded-full blur-3xl"
+            animate={{ 
+              x: [0, -50, 0],
+              y: [0, 30, 0],
+            }}
+            transition={{ duration: 18, repeat: Infinity, ease: "linear" }}
+          />
+        </div>
+
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5 }}
-          className="max-w-2xl w-full text-center"
+          className="max-w-2xl w-full text-center relative z-10"
         >
           <motion.div
             initial={{ scale: 0 }}
@@ -259,15 +285,56 @@ ${form.whatYouDo}
   }
 
   return (
-    <div className="min-h-screen" style={{ background: "#0a0a0a" }}>
-      {/* Background Effects */}
+    <div className="min-h-screen relative overflow-hidden bg-black">
+      {/* Black Grid Background - Exactly like other sections */}
       <div className="fixed inset-0 pointer-events-none">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(232,201,126,0.08),transparent_50%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(232,201,126,0.05),transparent_50%)]" />
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff08_1px,transparent_1px),linear-gradient(to_bottom,#ffffff08_1px,transparent_1px)] bg-[size:48px_48px]" />
+        {/* Grid pattern - white lines with low opacity */}
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff15_1px,transparent_1px),linear-gradient(to_bottom,#ffffff15_1px,transparent_1px)] bg-[size:48px_48px]" />
+        
+        {/* Radial gradient for depth */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,transparent_30%,rgba(0,0,0,0.8)_100%)]" />
+        
+        {/* Animated orbs */}
+        <motion.div 
+          className="absolute top-20 left-20 w-96 h-96 bg-[#e8c97e]/10 rounded-full blur-3xl"
+          animate={{ 
+            x: [0, 50, 0],
+            y: [0, -30, 0],
+          }}
+          transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
+        />
+        <motion.div 
+          className="absolute bottom-20 right-20 w-96 h-96 bg-[#e8c97e]/10 rounded-full blur-3xl"
+          animate={{ 
+            x: [0, -50, 0],
+            y: [0, 30, 0],
+          }}
+          transition={{ duration: 18, repeat: Infinity, ease: "linear" }}
+        />
+        
+        {/* Floating particles - kam kar diye taaki clean lage */}
+        {[...Array(15)].map((_, i) => (
+          <motion.div
+            key={i}
+            animate={{
+              y: [0, -30, 0],
+              opacity: [0, 0.15, 0],
+            }}
+            transition={{
+              duration: 8 + i,
+              repeat: Infinity,
+              delay: i * 0.5,
+            }}
+            className="absolute w-0.5 h-0.5 rounded-full bg-[#e8c97e]/40"
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+            }}
+          />
+        ))}
       </div>
 
-      <div className="relative max-w-7xl mx-auto px-4 md:px-8 py-12 md:py-20">
+      <div className="relative max-w-7xl mx-auto px-4 md:px-8 py-12 md:py-20 z-10">
 
         {/* Header Section - Improved */}
         <div className="text-center mb-16 pt-12">
@@ -331,95 +398,7 @@ ${form.whatYouDo}
           </motion.div>
         </div>
 
-        {/* How It Works Section - Improved */}
-        <section className="mb-32">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <h2 className="font-bebas text-5xl md:text-7xl text-white tracking-wide mb-4">
-              HOW IT{' '}
-              <span className="relative">
-                <span className="relative z-10 text-[#e8c97e]">WORKS</span>
-                <span className="absolute -bottom-2 left-0 w-full h-1 bg-[#e8c97e]/30 rounded-full" />
-              </span>
-            </h2>
-            <p className="text-white/40 text-lg">From application to episode in 4 simple steps</p>
-          </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
-            {[
-              { 
-                title: "Apply", 
-                desc: "Submit your founder story via the form below. Takes just 2 minutes.", 
-                icon: <FileText className="w-6 h-6" />,
-                color: "#e8c97e"
-              },
-              { 
-                title: "Review", 
-                desc: "Our team reviews your application for story depth within 48 hours.", 
-                icon: <Search className="w-6 h-6" />,
-                color: "#a78bfa"
-              },
-              { 
-                title: "Record", 
-                desc: "Schedule and record the podcast in our studio or remotely.", 
-                icon: <Mic className="w-6 h-6" />,
-                color: "#4ade80"
-              },
-              { 
-                title: "Publish", 
-                desc: "Your story goes live to 500K+ listeners across all platforms.", 
-                icon: <Zap className="w-6 h-6" />,
-                color: "#f87171"
-              }
-            ].map((step, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.15 }}
-                whileHover={{ y: -5 }}
-                className="relative p-8 rounded-3xl bg-gradient-to-b from-white/10 to-white/5 border border-white/20 hover:border-[#e8c97e]/40 transition-all group backdrop-blur-sm"
-              >
-                {/* Step number */}
-                <div className="absolute -top-4 -left-4 w-12 h-12 rounded-2xl bg-[#111] border-2 border-white/20 flex items-center justify-center font-bold text-[#e8c97e] text-xl shadow-xl">
-                  {i + 1}
-                </div>
-
-                {/* Icon container */}
-                <div 
-                  className="w-14 h-14 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-all duration-300"
-                  style={{ background: `${step.color}20`, border: `1px solid ${step.color}40` }}
-                >
-                  <span style={{ color: step.color }}>{step.icon}</span>
-                </div>
-
-                <h3 className="text-2xl font-bold mb-3 tracking-wide" style={{ color: step.color }}>
-                  {step.title}
-                </h3>
-                <p className="text-white/50 text-base leading-relaxed">{step.desc}</p>
-
-                {/* Progress line */}
-                {i < 3 && (
-                  <div className="hidden lg:block absolute -right-3 top-1/2 -translate-y-1/2 w-6 h-[2px] bg-gradient-to-r from-white/20 to-transparent" />
-                )}
-              </motion.div>
-            ))}
-          </div>
-
-          {/* Timeline for mobile */}
-          <div className="flex justify-center mt-8 lg:hidden">
-            <div className="flex gap-2">
-              {[1,2,3,4].map((num) => (
-                <div key={num} className="w-2 h-2 rounded-full bg-white/20" />
-              ))}
-            </div>
-          </div>
-        </section>
+        
 
         {/* Form Section */}
         <div ref={formRef} className="max-w-3xl mx-auto mb-32">

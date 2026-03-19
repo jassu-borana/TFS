@@ -162,25 +162,24 @@ function FeaturedPlayer({ ep }: { ep: (typeof EPISODES)[0] }) {
 
   return (
     <div
-      className="relative w-full overflow-hidden rounded-3xl shadow-xl"
+      className="relative w-full overflow-hidden rounded-3xl shadow-2xl"
       style={{ aspectRatio: "16/9" }}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
       {/* Animated border gradient */}
-      <div className="absolute -inset-0.5 bg-gradient-to-r from-amber-400 via-purple-400 to-pink-400 rounded-3xl opacity-30 group-hover:opacity-50 blur transition-opacity duration-500" />
+      <div className="absolute -inset-0.5 bg-gradient-to-r from-[#e8c97e] via-purple-500 to-pink-500 rounded-3xl opacity-30 group-hover:opacity-50 blur transition-opacity duration-500" />
       
       {/* Video container */}
-      <div className="relative w-full h-full rounded-3xl overflow-hidden bg-gray-100">
+      <div className="relative w-full h-full rounded-3xl overflow-hidden bg-black">
         {/* Mute / unmute indicator */}
         <motion.div
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: ready ? 1 : 0, y: ready ? 0 : -10 }}
           className="absolute top-4 right-4 z-30 flex items-center gap-1.5 px-3 py-1.5 rounded-full backdrop-blur-md transition-all duration-300"
           style={{
-            background: "rgba(255, 255, 255, 0.9)",
-            border: "1px solid rgba(0,0,0,0.1)",
-            boxShadow: "0 4px 12px rgba(0,0,0,0.05)",
+            background: "rgba(0, 0, 0, 0.8)",
+            border: "1px solid rgba(232,201,126,0.3)",
           }}
         >
           <motion.div
@@ -194,14 +193,14 @@ function FeaturedPlayer({ ep }: { ep: (typeof EPISODES)[0] }) {
                 <path d="M15.54 8.46a5 5 0 0 1 0 7.07" />
               </svg>
             ) : (
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(0,0,0,0.4)" strokeWidth="2">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.6)" strokeWidth="2">
                 <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
                 <line x1="23" y1="9" x2="17" y2="15" />
                 <line x1="17" y1="9" x2="23" y2="15" />
               </svg>
             )}
           </motion.div>
-          <span className="text-[10px] font-semibold tracking-widest uppercase" style={{ color: hovered ? "#e8c97e" : "rgba(0,0,0,0.5)" }}>
+          <span className="text-[10px] font-semibold tracking-widest uppercase" style={{ color: hovered ? "#e8c97e" : "rgba(255,255,255,0.6)" }}>
             {hovered ? "Sound On" : "Muted"}
           </span>
         </motion.div>
@@ -222,14 +221,15 @@ function FeaturedPlayer({ ep }: { ep: (typeof EPISODES)[0] }) {
           {/* Loading overlay */}
           <motion.div
             animate={{ opacity: ready ? 0 : 1 }}
-            className="absolute inset-0 bg-gray-50 flex items-center justify-center"
+            className="absolute inset-0 bg-black flex items-center justify-center"
           >
-            <div className="w-12 h-12 rounded-full border-2 border-amber-400/30 border-t-amber-400 animate-spin" />
+            <div className="w-12 h-12 rounded-full border-2 border-[#e8c97e]/30 border-t-[#e8c97e] animate-spin" />
           </motion.div>
         </div>
 
-        {/* Gradient overlays - softer for light theme */}
+        {/* Gradient overlays */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/60 to-transparent" />
         
         {/* Gold top bar with animation */}
         <motion.div
@@ -241,7 +241,7 @@ function FeaturedPlayer({ ep }: { ep: (typeof EPISODES)[0] }) {
             repeat: Infinity,
             ease: "easeInOut",
           }}
-          className="absolute top-0 left-0 h-[2px] bg-gradient-to-r from-transparent via-amber-400 to-transparent"
+          className="absolute top-0 left-0 h-[2px] bg-gradient-to-r from-transparent via-[#e8c97e] to-transparent"
         />
 
         {/* Content */}
@@ -253,8 +253,8 @@ function FeaturedPlayer({ ep }: { ep: (typeof EPISODES)[0] }) {
             transition={{ delay: 0.2 }}
             className="mb-4"
           >
-            <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-semibold tracking-wider bg-amber-100 text-amber-700 border border-amber-200">
-              <span className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse" />
+            <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-semibold tracking-wider bg-[#e8c97e]/10 text-[#e8c97e] border border-[#e8c97e]/30 backdrop-blur-sm">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#e8c97e] animate-pulse" />
               {ep.tag} · {ep.views} views
             </span>
           </motion.div>
@@ -270,7 +270,7 @@ function FeaturedPlayer({ ep }: { ep: (typeof EPISODES)[0] }) {
               <h3 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-2">
                 {ep.title}
               </h3>
-              <p className="text-white text-lg">
+              <p className="text-white/80 text-lg">
                 {ep.guest} · {ep.role}
               </p>
             </motion.div>
@@ -285,8 +285,8 @@ function FeaturedPlayer({ ep }: { ep: (typeof EPISODES)[0] }) {
               whileTap={{ scale: 0.95 }}
               className="group relative overflow-hidden rounded-full"
             >
-              <div className="absolute inset-0 bg-gradient-to-r from-amber-400 to-amber-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur" />
-              <div className="relative flex items-center gap-3 px-6 py-3 rounded-full bg-gradient-to-r from-amber-400 to-amber-500 text-white font-semibold shadow-lg">
+              <div className="absolute inset-0 bg-gradient-to-r from-[#e8c97e] to-[#f0d89a] opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur" />
+              <div className="relative flex items-center gap-3 px-6 py-3 rounded-full bg-gradient-to-r from-[#e8c97e] to-[#f0d89a] text-black font-semibold shadow-lg">
                 <svg width="12" height="14" viewBox="0 0 12 14" fill="currentColor">
                   <path d="M0 0l12 7L0 14V0z" />
                 </svg>
@@ -297,9 +297,9 @@ function FeaturedPlayer({ ep }: { ep: (typeof EPISODES)[0] }) {
               </div>
             </motion.a>
             
-            <div className="flex items-center gap-3 text-gray-500">
+            <div className="flex items-center gap-3 text-white/40">
               <span className="text-sm">{ep.duration}</span>
-              <span className="w-1 h-1 rounded-full bg-gray-300" />
+              <span className="w-1 h-1 rounded-full bg-white/40" />
               <span className="text-sm">{ep.date}</span>
             </div>
           </div>
@@ -343,14 +343,14 @@ function EpisodeRow({
         {isActive && (
           <motion.div
             layoutId="activeEpisode"
-            className="absolute left-0 w-1 h-8 rounded-full bg-gradient-to-b from-amber-400 to-amber-500"
+            className="absolute left-0 w-1 h-8 rounded-full bg-gradient-to-b from-[#e8c97e] to-[#f0d89a]"
           />
         )}
 
         {/* Number */}
         <span
           className="text-sm font-mono w-8"
-          style={{ color: isActive ? "#e8c97e" : "rgba(0,0,0,0.3)" }}
+          style={{ color: isActive ? "#e8c97e" : "rgba(255,255,255,0.3)" }}
         >
           {ep.number}
         </span>
@@ -364,7 +364,7 @@ function EpisodeRow({
           />
           <div
             className="absolute inset-0 flex items-center justify-center transition-opacity duration-300"
-            style={{ opacity: isActive ? 1 : 0, background: "rgba(0,0,0,0.3)" }}
+            style={{ opacity: isActive ? 1 : 0, background: "rgba(0,0,0,0.5)" }}
           >
             <svg width="8" height="10" viewBox="0 0 12 14" fill="#e8c97e">
               <path d="M0 0l12 7L0 14V0z" />
@@ -376,20 +376,20 @@ function EpisodeRow({
         <div className="flex-1 min-w-0">
           <p
             className="font-semibold text-sm truncate transition-colors duration-300"
-            style={{ color: isActive ? "#e8c97e" : "rgba(0,0,0,0.9)" }}
+            style={{ color: isActive ? "#e8c97e" : "rgba(255,255,255,0.9)" }}
           >
             {ep.title}
           </p>
           <p
             className="text-xs truncate transition-colors duration-300"
-            style={{ color: isActive ? "rgba(0,0,0,0.6)" : "rgba(0,0,0,0.4)" }}
+            style={{ color: isActive ? "rgba(255,255,255,0.6)" : "rgba(255,255,255,0.4)" }}
           >
             {ep.guest} · {ep.role}
           </p>
         </div>
 
         {/* Duration */}
-        <span className="text-xs font-mono" style={{ color: "rgba(0,0,0,0.3)" }}>
+        <span className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.3)" }}>
           {ep.duration}
         </span>
       </motion.div>
@@ -403,14 +403,56 @@ export default function EpisodesSection() {
   const ep = EPISODES[active];
 
   return (
-    <section className="relative overflow-hidden bg-gradient-to-b from-gray-50 via-white to-gray-50 py-28 px-4 md:px-8 lg:px-16">
-      {/* Animated background */}
-      <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(232,201,126,0.08),transparent_50%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,rgba(168,85,247,0.05),transparent_50%)]" />
-        
+    <section className="relative overflow-hidden bg-black py-28 px-4 md:px-8 lg:px-16">
+      {/* Black Grid Background */}
+      <div className="absolute inset-0 pointer-events-none">
         {/* Grid pattern */}
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#00000008_1px,transparent_1px),linear-gradient(to_bottom,#00000008_1px,transparent_1px)] bg-[size:32px_32px]" />
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff08_1px,transparent_1px),linear-gradient(to_bottom,#ffffff08_1px,transparent_1px)] bg-[size:48px_48px]" />
+        
+        {/* Radial gradient for depth */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,transparent_0%,rgba(0,0,0,0.5)_100%)]" />
+        
+        {/* Animated orbs */}
+        <motion.div 
+          className="absolute top-20 left-20 w-96 h-96 bg-[#e8c97e]/5 rounded-full blur-3xl"
+          animate={{ 
+            x: [0, 50, 0],
+            y: [0, -30, 0],
+            scale: [1, 1.2, 1],
+          }}
+          transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
+        />
+        <motion.div 
+          className="absolute bottom-20 right-20 w-96 h-96 bg-[#e8c97e]/5 rounded-full blur-3xl"
+          animate={{ 
+            x: [0, -50, 0],
+            y: [0, 30, 0],
+            scale: [1.2, 1, 1.2],
+          }}
+          transition={{ duration: 18, repeat: Infinity, ease: "linear" }}
+        />
+        
+        {/* Floating particles */}
+        {[...Array(30)].map((_, i) => (
+          <motion.div
+            key={i}
+            animate={{
+              y: [0, -40, 0],
+              x: [0, 20, 0],
+              opacity: [0, 0.2, 0],
+            }}
+            transition={{
+              duration: 10 + i,
+              repeat: Infinity,
+              delay: i * 0.3,
+            }}
+            className="absolute w-1 h-1 rounded-full bg-[#e8c97e]/30"
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+            }}
+          />
+        ))}
       </div>
 
       <div className="max-w-7xl mx-auto relative z-10">
@@ -425,13 +467,13 @@ export default function EpisodesSection() {
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-gray-200 shadow-sm mb-6"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-white/20 backdrop-blur-sm mb-6"
           >
             <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75" />
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-amber-400" />
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#e8c97e] opacity-75" />
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-[#e8c97e]" />
             </span>
-            <span className="text-xs font-medium tracking-wider text-gray-600 uppercase">
+            <span className="text-xs font-medium tracking-wider text-white/60 uppercase">
               Latest Episodes
             </span>
           </motion.div>
@@ -439,15 +481,15 @@ export default function EpisodesSection() {
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
             <div>
               <h2 className="text-6xl md:text-7xl lg:text-8xl font-bold">
-                <span className="text-gray-900">
+                <span className="text-white">
                   Featured
                 </span>
                 <br />
-                <span className="bg-gradient-to-r from-amber-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-[#e8c97e] via-purple-400 to-pink-400 bg-clip-text text-transparent">
                   Episodes
                 </span>
               </h2>
-              <p className="text-gray-600 text-lg mt-4 max-w-2xl">
+              <p className="text-white/40 text-lg mt-4 max-w-2xl">
                 Insights from founders who've built and scaled successful startups
               </p>
             </div>
@@ -457,7 +499,7 @@ export default function EpisodesSection() {
               target="_blank"
               rel="noopener noreferrer"
               whileHover={{ x: 5 }}
-              className="group flex items-center gap-2 text-gray-500 hover:text-gray-900 transition-colors duration-300"
+              className="group flex items-center gap-2 text-white/40 hover:text-white transition-colors duration-300"
             >
               <span className="text-sm font-medium">View all episodes</span>
               <svg
@@ -485,13 +527,13 @@ export default function EpisodesSection() {
             {/* Episode stats */}
             <div className="mt-6 flex items-center justify-between">
               <div className="flex items-center gap-4">
-                <span className="text-5xl font-bold bg-gradient-to-r from-amber-500 to-amber-600 bg-clip-text text-transparent">
+                <span className="text-5xl font-bold bg-gradient-to-r from-[#e8c97e] to-[#f0d89a] bg-clip-text text-transparent">
                   {ep.number}
                 </span>
-                <div className="h-8 w-px bg-gray-200" />
+                <div className="h-8 w-px bg-white/10" />
                 <div>
-                  <p className="text-gray-500 text-xs">Episode stats</p>
-                  <p className="text-gray-700 text-sm">{ep.views} views · {ep.date}</p>
+                  <p className="text-white/40 text-xs">Episode stats</p>
+                  <p className="text-white/60 text-sm">{ep.views} views · {ep.date}</p>
                 </div>
               </div>
               
@@ -508,7 +550,7 @@ export default function EpisodesSection() {
                       repeat: Infinity,
                       delay: i * 0.4,
                     }}
-                    className="w-1.5 h-1.5 rounded-full bg-amber-400/50"
+                    className="w-1.5 h-1.5 rounded-full bg-[#e8c97e]/50"
                   />
                 ))}
               </div>
@@ -521,17 +563,17 @@ export default function EpisodesSection() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="bg-white rounded-3xl p-6 border border-gray-200 shadow-lg"
+            className="bg-white/5 backdrop-blur-sm rounded-3xl p-6 border border-white/10"
           >
             {/* List header */}
-            <div className="flex items-center justify-between mb-6 pb-4 border-b border-gray-200">
+            <div className="flex items-center justify-between mb-6 pb-4 border-b border-white/10">
               <div className="flex items-center gap-3">
-                <div className="w-8 h-8 rounded-full bg-gradient-to-r from-amber-400 to-amber-500 flex items-center justify-center text-white font-bold shadow-md">
+                <div className="w-8 h-8 rounded-full bg-gradient-to-r from-[#e8c97e] to-[#f0d89a] flex items-center justify-center text-black font-bold shadow-md">
                   {EPISODES.length}
                 </div>
                 <div>
-                  <p className="text-gray-900 font-semibold">All Episodes</p>
-                  <p className="text-gray-500 text-xs">Click to play</p>
+                  <p className="text-white/90 font-semibold">All Episodes</p>
+                  <p className="text-white/40 text-xs">Click to play</p>
                 </div>
               </div>
               
@@ -539,7 +581,7 @@ export default function EpisodesSection() {
                 {["All", "Recent", "Popular"].map((filter) => (
                   <button
                     key={filter}
-                    className="px-3 py-1 text-xs rounded-full bg-gray-100 text-gray-600 hover:bg-gray-200 transition-colors"
+                    className="px-3 py-1 text-xs rounded-full bg-white/5 text-white/40 hover:text-white/60 transition-colors"
                   >
                     {filter}
                   </button>
@@ -561,6 +603,27 @@ export default function EpisodesSection() {
             </div>
           </motion.div>
         </div>
+
+        {/* Bottom CTA */}
+        <motion.div 
+          className="mt-20 text-center"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.5 }}
+        >
+          <motion.a
+            href="/apply"
+            className="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-gradient-to-r from-[#e8c97e] to-[#f0d89a] text-black font-semibold group"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            <span>Share Your Story</span>
+            <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </motion.a>
+        </motion.div>
       </div>
 
       {/* Custom scrollbar styles */}
@@ -569,15 +632,15 @@ export default function EpisodesSection() {
           width: 4px;
         }
         .custom-scrollbar::-webkit-scrollbar-track {
-          background: rgba(0, 0, 0, 0.05);
+          background: rgba(255, 255, 255, 0.05);
           border-radius: 20px;
         }
         .custom-scrollbar::-webkit-scrollbar-thumb {
-          background: rgba(232, 201, 126, 0.5);
+          background: rgba(232, 201, 126, 0.3);
           border-radius: 20px;
         }
         .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-          background: rgba(255, 216, 125, 0.7);
+          background: rgba(232, 201, 126, 0.5);
         }
       `}</style>
     </section>
