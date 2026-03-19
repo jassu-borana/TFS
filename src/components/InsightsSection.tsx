@@ -7,7 +7,7 @@ type Insight = {
   number: string;
   headline: string;
   quote: string;
-  category: string;
+  // category: string;
   icon: string;
 };
 
@@ -86,15 +86,7 @@ function InsightCard({ item, index }: { item: Insight; index: number }) {
         {/* Content */}
         <div className="flex-1">
           {/* Category tag */}
-          <motion.div 
-            className="inline-block mb-3"
-            animate={isHovered ? { x: 5 } : { x: 0 }}
-          >
-            <span className="text-[0.65rem] font-semibold tracking-[0.2em] text-brand-accent/50 bg-brand-accent/5 px-3 py-1 rounded-full">
-              {item.category}
-            </span>
-          </motion.div>
-
+          
           {/* Headline with animated underline */}
           <div className="relative inline-block mb-4">
             <h3 className="font-bebas text-4xl md:text-5xl tracking-wide text-white">
