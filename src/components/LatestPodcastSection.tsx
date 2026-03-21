@@ -2,6 +2,7 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import { useRef, useState } from "react";
+import { useEffect } from "react"; 
 
 const VIDEOS = [
   {
@@ -70,14 +71,18 @@ function FeaturedPlayer({ videoId }: { videoId: string }) {
   const [isMobile, setIsMobile] = useState(false);
 
   // Check if mobile
-  useState(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
-  }, );
+useEffect(() => {
+  if (typeof window === "undefined") return;
+
+  const checkMobile = () => {
+    setIsMobile(window.innerWidth < 768);
+  };
+
+  checkMobile();
+  window.addEventListener("resize", checkMobile);
+
+  return () => window.removeEventListener("resize", checkMobile);
+}, []);
 
   const sendCmd = (fn: string) => {
     iframeRef.current?.contentWindow?.postMessage(

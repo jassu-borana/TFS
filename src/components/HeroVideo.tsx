@@ -10,10 +10,12 @@ export default function HeroVideo() {
   const [showContent, setShowContent] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
 
-  useEffect(() => {
-    setMounted(true);
-    setIsMobile(window.innerWidth < 768);
-  }, []);
+useEffect(() => {
+  if (typeof window === "undefined") return;
+
+  setMounted(true);
+  setIsMobile(window.innerWidth < 768);
+}, []);
 
   const handleVideoEnd = () => {
     setVideoEnded(true);

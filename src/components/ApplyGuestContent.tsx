@@ -170,7 +170,9 @@ ${form.whatYouDo}
 ⏰ *Submitted:* ${new Date().toLocaleString('en-IN')}`.trim();
 
     const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
-    window.open(url, '_blank');
+   if (typeof window !== "undefined") {
+  window.open(url, "_blank");
+}
 
     setTimeout(() => {
       setIsSubmitting(false);

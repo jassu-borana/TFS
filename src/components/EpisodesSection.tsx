@@ -120,14 +120,18 @@ function FeaturedPlayer({ ep }: { ep: (typeof EPISODES)[0] }) {
   const [hovered, setHovered] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
 
-  useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
-  }, []);
+useEffect(() => {
+  if (typeof window === "undefined") return;
+
+  const checkMobile = () => {
+    setIsMobile(window.innerWidth < 768);
+  };
+
+  checkMobile();
+  window.addEventListener("resize", checkMobile);
+
+  return () => window.removeEventListener("resize", checkMobile);
+}, []);
 
   const handleMouseEnter = () => {
     if (isMobile) return;

@@ -8,11 +8,15 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+ useEffect(() => {
+  if (typeof window === "undefined") return;
+
+  const onScroll = () => setScrolled(window.scrollY > 20);
+
+  window.addEventListener("scroll", onScroll, { passive: true });
+
+  return () => window.removeEventListener("scroll", onScroll);
+}, []);
 
   return (
     <motion.nav
