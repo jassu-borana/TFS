@@ -68,142 +68,141 @@ export default function HeroVideo() {
         </motion.video>
       </motion.div>
 
-      {/* Desktop Content - Center mein video ke neeche */}
-      {!isMobile && (
-        <AnimatePresence>
-          {showContent && (
-            <motion.div
-              className="absolute left-1/2 transform -translate-x-1/2 w-full max-w-4xl px-4"
-              style={{
-                top: "50%",
-                marginTop: "250px", // Video ke neeche center se
-              }}
-              initial={{ opacity: 0, y: 50 }}
+      {/* Desktop Content - Bottom Center (Pushed Further Down) */}
+{!isMobile && (
+  <AnimatePresence>
+    {showContent && (
+      <motion.div
+        // 'bottom-2' se ye screen ke aur niche chala jayega. 
+        // Agar bilkul niche touch karwana hai toh 'bottom-0' use kar sakte ho.
+        className="absolute bottom-2 left-1/2 -translate-x-1/2 w-full max-w-4xl px-4 z-50"
+        initial={{ opacity: 0, y: 50, x: "-50%" }}
+        animate={{ opacity: 1, y: 0, x: "-50%" }}
+        exit={{ opacity: 0, y: -50, x: "-50%" }}
+        transition={{
+          duration: 0.8,
+          delay: 0.2,
+          ease: "easeOut"
+        }}
+      >
+        <div className="flex flex-col items-center justify-center text-center space-y-4">
+          
+          {/* "BE THE NEXT" Section */}
+          <motion.div className="relative inline-block">
+            <motion.p
+              className="relative text-2xl md:text-3xl tracking-[0.3em] uppercase font-bold z-10"
+              initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -50 }}
-              transition={{ 
-                duration: 0.8, 
-                delay: 0.2,
-                ease: "easeOut"
-              }}
+              transition={{ delay: 0.4, duration: 0.6 }}
             >
-              {/* Text Content */}
-              <motion.div className="text-center space-y-8">
-                {/* "Be The Next" */}
-                <motion.div className="relative inline-block">
-                  <motion.p
-                    className="relative text-2xl md:text-3xl tracking-[0.3em] uppercase font-bold z-10"
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.4, duration: 0.6 }}
-                  >
-                    <span className="text-white/40">BE THE</span>{" "}
-                    <motion.span
-                      className="text-[#e8c97e] relative"
-                      animate={{
-                        textShadow: [
-                          "0 0 0px #e8c97e",
-                          "0 0 20px #e8c97e",
-                          "0 0 0px #e8c97e",
-                        ],
-                      }}
-                      transition={{
-                        duration: 2,
-                        repeat: Infinity,
-                        repeatDelay: 1,
-                      }}
-                    >
-                      NEXT
-                      <motion.div
-                        className="absolute -bottom-2 left-0 right-0 h-0.5 bg-gradient-to-r from-[#e8c97e] to-transparent"
-                        initial={{ width: 0, opacity: 0 }}
-                        animate={{ width: "100%", opacity: 1 }}
-                        transition={{ delay: 0.8, duration: 0.8 }}
-                      />
-                    </motion.span>
-                  </motion.p>
-                </motion.div>
-
-                {/* "GUEST" */}
-                <motion.div className="overflow-hidden">
-                  <motion.h2
-                    className="text-7xl md:text-8xl font-bold"
-                    initial={{ opacity: 0, y: 100 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.6, duration: 0.8, type: "spring", stiffness: 80 }}
-                  >
-                    {["G", "U", "E", "S", "T"].map((letter, i) => (
-                      <motion.span
-                        key={i}
-                        className="inline-block text-white"
-                        animate={{
-                          color: ["#ffffff", "#e8c97e", "#ffffff"],
-                        }}
-                        transition={{
-                          duration: 3,
-                          delay: 1 + i * 0.1,
-                          repeat: Infinity,
-                          repeatDelay: 2,
-                        }}
-                      >
-                        {letter}
-                      </motion.span>
-                    ))}
-                  </motion.h2>
-                </motion.div>
-
-                {/* Button */}
+              <span className="text-white">BE THE</span>{" "}
+              <motion.span
+                className="text-[#e8c97e] relative"
+                animate={{
+                  textShadow: [
+                    "0 0 0px #e8c97e",
+                    "0 0 20px #e8c97e",
+                    "0 0 0px #e8c97e",
+                  ],
+                }}
+                transition={{
+                  duration: 2,
+                  repeat: Infinity,
+                  repeatDelay: 1,
+                }}
+              >
+                NEXT
                 <motion.div
-                  initial={{ opacity: 0, scale: 0.5 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ 
-                    delay: 0.9, 
-                    type: "spring",
-                    stiffness: 200,
-                    damping: 15
+                  className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-to-r from-[#e8c97e] to-transparent"
+                  initial={{ width: 0, opacity: 0 }}
+                  animate={{ width: "100%", opacity: 1 }}
+                  transition={{ delay: 0.8, duration: 0.8 }}
+                />
+              </motion.span>
+            </motion.p>
+          </motion.div>
+
+          {/* "GUEST" Section */}
+          <motion.div className="overflow-hidden">
+            <motion.h2
+              className="text-7xl md:text-8xl font-bold leading-tight"
+              initial={{ opacity: 0, y: 100 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.6, duration: 0.8, type: "spring", stiffness: 80 }}
+            >
+              {["G", "U", "E", "S", "T"].map((letter, i) => (
+                <motion.span
+                  key={i}
+                  className="inline-block text-white"
+                  animate={{
+                    color: ["#ffffff", "#ffecc1", "#ffffff"],
+                  }}
+                  transition={{
+                    duration: 3,
+                    delay: 1 + i * 0.1,
+                    repeat: Infinity,
+                    repeatDelay: 2,
                   }}
                 >
-                  <motion.a
-                    href="/apply"
-                    className="inline-flex items-center gap-3 px-10 py-5 rounded-full bg-gradient-to-r from-[#e8c97e] to-[#f0d89a] text-black font-semibold text-xl group relative overflow-hidden"
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    <span className="relative flex items-center gap-3">
-                      Apply as Guest
-                      <svg
-                        className="w-6 h-6"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M17 8l4 4m0 0l-4 4m4-4H3"
-                        />
-                      </svg>
-                    </span>
-                  </motion.a>
-                </motion.div>
+                  {letter}
+                </motion.span>
+              ))}
+            </motion.h2>
+          </motion.div>
 
-                {/* Decorative line */}
-                <motion.div
-                  className="flex justify-center gap-2 mt-8"
-                  initial={{ opacity: 0, scaleX: 0 }}
-                  animate={{ opacity: 1, scaleX: 1 }}
-                  transition={{ delay: 1.1, duration: 0.8 }}
+          {/* Action Button */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.5 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ 
+              delay: 0.9, 
+              type: "spring",
+              stiffness: 200,
+              damping: 15
+            }}
+          >
+            <motion.a
+              href="/apply"
+              className="inline-flex items-center gap-3 px-10 py-4 rounded-full bg-gradient-to-r from-[#e8c97e] to-[#f0d89a] text-black font-bold text-lg group relative overflow-hidden shadow-xl"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <span className="relative flex items-center gap-3">
+                Apply as Guest
+                <svg
+                  className="w-5 h-5 transition-transform group-hover:translate-x-1"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
                 >
-                  <div className="w-12 h-0.5 bg-[#e8c97e]/30 rounded-full" />
-                  <div className="w-4 h-0.5 bg-[#e8c97e]/60 rounded-full" />
-                  <div className="w-2 h-0.5 bg-[#e8c97e] rounded-full" />
-                </motion.div>
-              </motion.div>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      )}
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2.5}
+                    d="M17 8l4 4m0 0l-4 4m4-4H3"
+                  />
+                </svg>
+              </span>
+            </motion.a>
+          </motion.div>
+
+          {/* Bottom Decorative Line (Optional - removed extra space here) */}
+          <motion.div
+            className="flex justify-center gap-2"
+            initial={{ opacity: 0, scaleX: 0 }}
+            animate={{ opacity: 1, scaleX: 1 }}
+            transition={{ delay: 1.1, duration: 0.8 }}
+          >
+            <div className="w-10 h-1 bg-[#e8c97e]/20 rounded-full" />
+            <div className="w-2 h-1 bg-[#e8c97e]/40 rounded-full" />
+          </motion.div>
+          
+        </div>
+      </motion.div>
+    )}
+  </AnimatePresence>
+)}
+
 
       {/* Mobile - Sirf video */}
 

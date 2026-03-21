@@ -8,28 +8,28 @@ const TESTIMONIALS = [
     name: "Ananya Sharma",
     role: "Founder & CEO, NutrifyAI",
     stars: 5,
-    text: "Going on The Founder Show was a turning point. Girish asked questions I hadn't answered even to myself. The episode response from my community was overwhelming.",
+    text: "I’ve done a few podcasts before, but this felt different. The conversation went deeper than I expected, and it stayed with me even after the shoot.",
     initial: "AS",
   },
   {
     name: "Dev Patel",
     role: "Co-Founder, LogistIQ",
     stars: 5,
-    text: "I've done 20+ podcast appearances. None felt as authentic or as well-prepared as this one. Girish genuinely cares about the story, not the highlight reel.",
+    text: "What I liked most was the clarity. It wasn’t just talking — it helped me see my own journey more clearly.",
     initial: "DP",
   },
   {
     name: "Meera Joshi",
     role: "Founder, GreenThread",
     stars: 5,
-    text: "The listener feedback I got after the episode helped us close our next funding round. Visibility and credibility — The Founder Show delivers both.",
+    text: "The response after the episode surprised me. People reached out saying they finally understood what we’re building.",
     initial: "MJ",
   },
   {
     name: "Rohan Verma",
     role: "CEO, CloudKraft",
     stars: 5,
-    text: "Girish has a rare ability to make you feel at ease while diving into the hardest chapters of your journey. A truly world-class host.",
+    text: "It didn’t feel like an interview. It felt like a real conversation — and that made all the difference.",
     initial: "RV",
   },
 ];
@@ -139,8 +139,9 @@ export default function TestimonialsSection() {
           <p className="text-sm font-semibold tracking-[0.25em] text-[#e8c97e]/70 uppercase mb-3">
             Voices
           </p>
-          <h2 className="font-bebas text-7xl sm:text-8xl leading-none tracking-wide text-white">
-            WHAT FOUNDERS ARE<br/> SAYING
+          <h2 className="font-bebas text-4xl sm:text-6xl leading-none tracking-wide text-white">
+           WHAT FOUNDERS ARE SAYING
+
           </h2>
         </motion.div>
 

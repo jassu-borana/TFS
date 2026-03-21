@@ -42,10 +42,12 @@ export default function HomePage() {
         <LatestPodcastSection />
         <HostSection />
         <Whythispodcast />
-        <EpisodesSection />
+        
         <QuotesSection />
         <WhatYouGetSection />
+        <EpisodesSection />
         <ProcessSection />
+        
         <InsightsSection />
         <TestimonialsSection />
 

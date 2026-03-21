@@ -134,11 +134,12 @@ export default function HostSection() {
               >
                 <div className="w-8 h-0.5 bg-[#e8c97e]/60 rounded-full" />
                 <p className="text-sm font-semibold tracking-[0.25em] text-[#e8c97e] uppercase">
-                  Your Host
+               Meet the Voice Behind the Conversations
+
                 </p>
               </motion.div>
 
-              <h2 className="font-bebas text-6xl sm:text-7xl lg:text-8xl leading-none tracking-wide text-white">
+              <h2 className="text-center font-bebas text-6xl sm:text-7xl lg:text-8xl leading-none tracking-wide text-white">
                 GIRISH<br />
                 <span className="bg-gradient-to-r from-[#e8c97e] to-[#f0d89a] bg-clip-text text-transparent">
                   SINGARIA
@@ -148,11 +149,15 @@ export default function HostSection() {
 
             <div className="space-y-4">
               <p className="text-white/70 text-lg leading-relaxed font-inter border-l-4 border-[#e8c97e]/30 pl-4">
-                Entrepreneur, investor, and storyteller — Girish Singaria has spent years in the trenches of the startup world. His natural curiosity and deep empathy unlock conversations that founders rarely have in public.
+              Hosted by Girish Singaria, a startup mentor, investor in India, and seasoned business leader, The Founder Show brings a perspective that goes beyond basic questioning.
+With years of experience working closely with founders and businesses, Girish understands what truly matters - and asks the questions most people don’t.
+
               </p>
               <p className="text-white/70 text-lg leading-relaxed font-inter">
-                With a gift for asking the questions others avoid, Girish creates a space where founders feel seen, understood, and heard.
-              </p>
+               As a podcast host in India and a startup expert, his approach is simple: keep it real, keep it meaningful, and always bring value to the listener.
+This isn’t just a podcast for founders.
+It’s a platform built by someone who has been in the trenches himself.
+</p>
             </div>
 
             <div className="flex flex-wrap gap-3 pt-4">

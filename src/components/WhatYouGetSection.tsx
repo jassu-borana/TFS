@@ -7,7 +7,7 @@ const ITEMS = [
   {
     emoji: "🎙️",
     title: "90-Minute Deep Dive Interview",
-    desc: "Professional in-studio recording with our top-rated host + Full copyright for your marketing campaigns",
+    desc: "A focused, in-studio conversation that brings out the real story behind your journey - guided, structured, and built to create meaningful content you can actually use.",
     color: "#e8c97e",
     bgColor: "rgba(232,201,126,0.1)",
     borderColor: "rgba(232,201,126,0.2)",
@@ -15,7 +15,7 @@ const ITEMS = [
   {
     emoji: "🎬",
     title: "Professional Video Production",
-    desc: "Multi-camera studio shoot with NETFLIX style cinematic editing by India's leading editors",
+    desc: "Shot in a multi-camera studio setup with clean, cinematic edits that reflect the quality of your brand - not just another podcast recording.",
     color: "#a78bfa",
     bgColor: "rgba(167,139,250,0.1)",
     borderColor: "rgba(167,139,250,0.2)",
@@ -23,7 +23,7 @@ const ITEMS = [
   {
     emoji: "📱",
     title: "Social Media Amplification Package",
-    desc: "6 professionally edited reels/shorts + organic distribution across all major platforms",
+    desc: "Carefully edited short-form content, designed for reach and relevance - distributed across platforms where your audience is already paying attention.",
     color: "#4ade80",
     bgColor: "rgba(74,222,128,0.1)",
     borderColor: "rgba(74,222,128,0.2)",
@@ -31,7 +31,7 @@ const ITEMS = [
   {
     emoji: "📊",
     title: "Startup Community Reach",
-    desc: "Paid distribution to high-intent founder & investor groups via Meta/Google/LinkedIn ads",
+    desc: "Your story doesn’t just stay on the internet - it reaches curated founder and investor communities through targeted distribution.",
     color: "#f87171",
     bgColor: "rgba(248,113,113,0.1)",
     borderColor: "rgba(248,113,113,0.2)",
@@ -39,7 +39,7 @@ const ITEMS = [
   {
     emoji: "©️",
     title: "Lifetime Content Usage Rights",
-    desc: "Own the content forever — use in ads, client proposals, decks, landing pages, or pitch materials",
+    desc: "This isn’t rented visibility.Every piece of content is yours to use across ads, pitches, decks, and brand building - whenever you need it.",
     color: "#60a5fa",
     bgColor: "rgba(96,165,250,0.1)",
     borderColor: "rgba(96,165,250,0.2)",
@@ -47,7 +47,7 @@ const ITEMS = [
   {
     emoji: "🌐",
     title: "TFD Power Network Access",
-    desc: "Direct sharing with our private network of unicorn founders, startup CEOs, and top operators",
+    desc: "Access to a trusted circle of founders, operators, and decision-makers - where conversations can turn into real opportunities.",
     color: "#fbbf24",
     bgColor: "rgba(251,191,36,0.1)",
     borderColor: "rgba(251,191,36,0.2)",
@@ -136,11 +136,12 @@ export default function WhatYouGetSection() {
             className="text-5xl md:text-7xl font-bold mb-4"
           >
             <span className="text-white">
-              Everything You Get
+             Built for Founders Who 
+
             </span>
             <br />
             <span className="bg-gradient-to-r from-[#e8c97e] via-purple-400 to-pink-400 bg-clip-text text-transparent">
-              All-In-One Package
+              Mean Business
             </span>
           </motion.h2>
 

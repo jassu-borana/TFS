@@ -12,37 +12,36 @@ type Insight = {
 };
 
 const INSIGHTS: Insight[] = [
+  
   {
     number: "01",
-    headline: "Start Before You're Ready",
+    headline: "Just Start",
     quote:
-      "The founders who win aren't the ones who had the perfect plan. They're the ones who started, adapted, and refused to quit.",
+      "You don’t feel ready. You just start… and figure things out along the way.",
     icon: "🚀",
   },
   {
     number: "02",
-    headline: "Your Network Is Your Net Worth",
+    headline: "People Matter More",
     quote:
-      "Every breakthrough funding round, critical hire, or game-changing partnership traced back to a relationship. Build people, not just products.",
-   
+      "Most big opportunities came from people I knew, not from plans I made.",
     icon: "🤝",
   },
   {
     number: "03",
-    headline: "Failure Is the Curriculum",
+    headline: "You Learn the Hard Way",
     quote:
-      "No MBA teaches what a failed launch does. Embrace the lessons embedded in every setback — they are your competitive moat.",
-  
+      "The mistakes taught me more than anything that went right.",
     icon: "💪",
   },
   {
     number: "04",
-    headline: "Growth Over Comfort",
+    headline: "Growth Feels Uncomfortable",
     quote:
-      "Scaling a company is personal growth in disguise. You'll be forced to confront your weaknesses, and that's exactly where the magic happens.",
-    
+      "Every time the business grew, I had to step up first. It’s never easy.",
     icon: "📈",
   },
+
 ];
 
 function InsightCard({ item, index }: { item: Insight; index: number }) {
@@ -223,7 +222,8 @@ export default function InsightsSection() {
             viewport={{ once: true }}
             transition={{ duration: 0.7, delay: 0.4 }}
           >
-            FOUNDER INSIGHTS
+           Real Founder Thoughts
+
             <motion.div 
               className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 w-24 h-1 bg-gradient-to-r from-transparent via-[#e8c97e] to-transparent rounded-full"
               initial={{ width: 0, opacity: 0 }}

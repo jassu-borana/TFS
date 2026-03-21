@@ -143,17 +143,7 @@ export default function AboutSection() {
 </div>
 
             {/* Host section */}
-         <div className="flex flex-col items-center text-center gap-3 pt-4">
-  <div className="w-16 h-16 rounded-full bg-gradient-to-br from-[#e8c97e] to-[#f0d89a] flex items-center justify-center text-black font-bebas text-2xl shadow-lg">
-    TFS
-  </div>
-
-  <div>
-    <p className="text-xs text-white/40 font-inter tracking-widest">HOSTED BY</p>
-    <p className="font-bebas text-2xl text-white tracking-wide">GIRISH SINGARIA</p>
-    <span className="text-xs text-white/50">Entrepreneur & Storyteller</span>
-  </div>
-</div>
+         
           </motion.div>
         </motion.div>
 
