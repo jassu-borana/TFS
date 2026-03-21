@@ -77,7 +77,7 @@ function FeaturedPlayer({ videoId }: { videoId: string }) {
     checkMobile();
     window.addEventListener('resize', checkMobile);
     return () => window.removeEventListener('resize', checkMobile);
-  }, []);
+  }, );
 
   const sendCmd = (fn: string) => {
     iframeRef.current?.contentWindow?.postMessage(
@@ -443,21 +443,25 @@ export default function LatestPodcastSection() {
             </div>
             
             <motion.a
-              href="https://youtube.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              whileHover={{ x: 5 }}
-              className="group flex items-center gap-1.5 md:gap-2 px-3 py-1.5 md:px-4 md:py-2 rounded-full bg-white/10 border border-white/20 backdrop-blur-sm hover:bg-white/20 transition-all text-xs md:text-sm"
-            >
-              <span className="font-medium text-white/80">Explore Conversations</span>
-              <svg
-                width="12" height="12" className="md:w-[16px] md:h-[16px]" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" strokeWidth="2"
-                className="text-white/40 group-hover:text-[#e8c97e] group-hover:translate-x-1 transition-all"
-              >
-                <path d="M5 12h14M12 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-            </motion.a>
+  href="https://youtube.com"
+  target="_blank"
+  rel="noopener noreferrer"
+  whileHover={{ x: 5 }}
+  className="group flex items-center gap-1.5 md:gap-2 px-3 py-1.5 md:px-4 md:py-2 rounded-full bg-white/10 border border-white/20 backdrop-blur-sm hover:bg-white/20 transition-all text-xs md:text-sm"
+>
+  <span className="font-medium text-white/80">Explore Conversations</span>
+  <svg
+    width="12"
+    height="12"
+    className="md:w-[16px] md:h-[16px] text-white/40 group-hover:text-[#e8c97e] group-hover:translate-x-1 transition-all"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+  >
+    <path d="M5 12h14M12 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round" />
+  </svg>
+</motion.a>
           </div>
         </motion.div>
 
