@@ -291,9 +291,6 @@ export default function ProcessSection() {
                          <div className="text-4xl md:text-5xl font-bold text-white">
   0{stepIndex + 1}
 </div>
-                          <div className="text-xs md:text-sm text-white/40">
-                            {step.items.length} steps
-                          </div>
                         </div>
                       </motion.div>
                     </div>

@@ -31,7 +31,7 @@ const ITEMS = [
   {
     emoji: "📊",
     title: "Startup Community Reach",
-    desc: "Your story doesn’t just stay on the internet - it reaches curated founder and investor communities through targeted distribution.",
+    desc: "Your story doesn't just stay on the internet - it reaches curated founder and investor communities through targeted distribution.",
     color: "#f87171",
     bgColor: "rgba(248,113,113,0.1)",
     borderColor: "rgba(248,113,113,0.2)",
@@ -39,7 +39,7 @@ const ITEMS = [
   {
     emoji: "©️",
     title: "Lifetime Content Usage Rights",
-    desc: "This isn’t rented visibility.Every piece of content is yours to use across ads, pitches, decks, and brand building - whenever you need it.",
+    desc: "This isn't rented visibility. Every piece of content is yours to use across ads, pitches, decks, and brand building - whenever you need it.",
     color: "#60a5fa",
     bgColor: "rgba(96,165,250,0.1)",
     borderColor: "rgba(96,165,250,0.2)",
@@ -61,57 +61,31 @@ export default function WhatYouGetSection() {
     <section className="relative overflow-hidden py-28 px-4 bg-black">
       {/* Black Grid Background */}
       <div className="absolute inset-0 pointer-events-none">
-        {/* Grid pattern */}
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff08_1px,transparent_1px),linear-gradient(to_bottom,#ffffff08_1px,transparent_1px)] bg-[size:48px_48px]" />
-        
-        {/* Radial gradient for depth */}
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,transparent_0%,rgba(0,0,0,0.5)_100%)]" />
-        
-        {/* Animated orbs */}
-        <motion.div 
+        <motion.div
           className="absolute top-20 left-20 w-96 h-96 bg-[#e8c97e]/5 rounded-full blur-3xl"
-          animate={{ 
-            x: [0, 50, 0],
-            y: [0, -30, 0],
-            scale: [1, 1.2, 1],
-          }}
+          animate={{ x: [0, 50, 0], y: [0, -30, 0], scale: [1, 1.2, 1] }}
           transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
         />
-        <motion.div 
+        <motion.div
           className="absolute bottom-20 right-20 w-96 h-96 bg-[#e8c97e]/5 rounded-full blur-3xl"
-          animate={{ 
-            x: [0, -50, 0],
-            y: [0, 30, 0],
-            scale: [1.2, 1, 1.2],
-          }}
+          animate={{ x: [0, -50, 0], y: [0, 30, 0], scale: [1.2, 1, 1.2] }}
           transition={{ duration: 18, repeat: Infinity, ease: "linear" }}
         />
-        
-        {/* Floating particles */}
         {[...Array(30)].map((_, i) => (
           <motion.div
             key={i}
-            animate={{
-              y: [0, -40, 0],
-              x: [0, 20, 0],
-              opacity: [0, 0.2, 0],
-            }}
-            transition={{
-              duration: 10 + i,
-              repeat: Infinity,
-              delay: i * 0.3,
-            }}
+            animate={{ y: [0, -40, 0], x: [0, 20, 0], opacity: [0, 0.2, 0] }}
+            transition={{ duration: 10 + i, repeat: Infinity, delay: i * 0.3 }}
             className="absolute w-1 h-1 rounded-full bg-[#e8c97e]/30"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-            }}
+            style={{ left: `${Math.random() * 100}%`, top: `${Math.random() * 100}%` }}
           />
         ))}
       </div>
 
       <div className="max-w-7xl mx-auto relative z-10">
-        {/* Enhanced Heading */}
+        {/* Heading */}
         <div className="text-center mb-16">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -133,12 +107,9 @@ export default function WhatYouGetSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="text-5xl md:text-7xl font-bold mb-4"
+            className="text-4xl md:text-5xl lg:text-7xl font-bold mb-4"
           >
-            <span className="text-white">
-             Built for Founders Who 
-
-            </span>
+            <span className="text-white">Built for Founders Who</span>
             <br />
             <span className="bg-gradient-to-r from-[#e8c97e] via-purple-400 to-pink-400 bg-clip-text text-transparent">
               Mean Business
@@ -150,14 +121,14 @@ export default function WhatYouGetSection() {
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="text-white/50 text-lg max-w-2xl mx-auto"
+            className="text-white/50 text-sm md:text-lg max-w-2xl mx-auto"
           >
             Everything you need to build authority and visibility — all included in one comprehensive package
           </motion.p>
         </div>
 
-        {/* Items grid - 3x2 layout for 6 cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {/* Cards grid — 2 col mobile, 3 col desktop */}
+        <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 md:gap-6">
           {ITEMS.map((item, i) => (
             <motion.div
               key={item.title}
@@ -179,23 +150,21 @@ export default function WhatYouGetSection() {
                 className="absolute -inset-2 rounded-3xl blur-2xl"
                 style={{ background: item.color }}
               />
-              
+
               {/* Main card */}
               <motion.div
-                animate={{
-                  y: hoveredIndex === i ? -4 : 0,
-                }}
+                animate={{ y: hoveredIndex === i ? -4 : 0 }}
                 transition={{ duration: 0.3 }}
-                className="relative h-full p-8 rounded-2xl bg-white/5 backdrop-blur-sm border-2 transition-all duration-300 overflow-hidden"
+                className="relative h-full p-4 md:p-8 rounded-2xl bg-white/5 backdrop-blur-sm border-2 transition-all duration-300 overflow-hidden"
                 style={{
                   borderColor: hoveredIndex === i ? item.color : "rgba(255,255,255,0.1)",
                   background: hoveredIndex === i ? item.bgColor : "rgba(255,255,255,0.05)",
                 }}
               >
-                {/* Icon container */}
-                <div className="relative mb-6">
-                  <div 
-                    className="w-16 h-16 rounded-xl flex items-center justify-center text-3xl transition-all duration-300"
+                {/* Icon */}
+                <div className="relative mb-3 md:mb-6">
+                  <div
+                    className="w-10 h-10 md:w-16 md:h-16 rounded-xl flex items-center justify-center text-xl md:text-3xl transition-all duration-300"
                     style={{
                       background: item.bgColor,
                       border: `2px solid ${item.borderColor}`,
@@ -204,25 +173,24 @@ export default function WhatYouGetSection() {
                   >
                     {item.emoji}
                   </div>
-                  
-                  {/* Floating indicator dot */}
+
                   {hoveredIndex === i && (
                     <motion.div
                       initial={{ scale: 0 }}
                       animate={{ scale: 1 }}
-                      className="absolute -top-1 -right-1 w-4 h-4 rounded-full border-2 border-black"
+                      className="absolute -top-1 -right-1 w-3 h-3 md:w-4 md:h-4 rounded-full border-2 border-black"
                       style={{ background: item.color }}
                     />
                   )}
                 </div>
 
                 {/* Title */}
-                <h3 className="text-xl font-bold text-white mb-3 group-hover:text-white transition-colors">
+                <h3 className="text-sm md:text-xl font-bold text-white mb-2 md:mb-3 leading-snug">
                   {item.title}
                 </h3>
 
-                {/* Description */}
-                <p className="text-white/50 text-sm leading-relaxed">
+                {/* Description — hidden on mobile, visible md+ */}
+                <p className="hidden md:block text-white/50 text-sm leading-relaxed">
                   {item.desc}
                 </p>
 
@@ -236,11 +204,11 @@ export default function WhatYouGetSection() {
                 />
 
                 {/* Corner accents */}
-                <div 
+                <div
                   className="absolute top-4 left-4 w-4 h-4 border-l-2 border-t-2 rounded-tl-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                   style={{ borderColor: item.color }}
                 />
-                <div 
+                <div
                   className="absolute bottom-4 right-4 w-4 h-4 border-r-2 border-b-2 rounded-br-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                   style={{ borderColor: item.color }}
                 />
@@ -249,13 +217,13 @@ export default function WhatYouGetSection() {
           ))}
         </div>
 
-        {/* Stats section - 2x2 grid */}
+        {/* Stats — 2 col mobile, 4 col desktop */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.3 }}
-          className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-4"
+          className="mt-12 md:mt-20 grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4"
         >
           {[
             { value: "100+", label: "Founders Featured", color: "#e8c97e" },
@@ -266,58 +234,42 @@ export default function WhatYouGetSection() {
             <motion.div
               key={i}
               whileHover={{ y: -4, scale: 1.02 }}
-              className="text-center p-6 rounded-2xl bg-white/5 border-2 border-white/10 hover:border-[#e8c97e]/30 transition-all backdrop-blur-sm"
+              className="text-center p-4 md:p-6 rounded-2xl bg-white/5 border-2 border-white/10 hover:border-[#e8c97e]/30 transition-all backdrop-blur-sm"
             >
-              <div className="text-3xl md:text-4xl font-bold mb-2" style={{ color: stat.color }}>
+              <div className="text-2xl md:text-4xl font-bold mb-1 md:mb-2" style={{ color: stat.color }}>
                 {stat.value}
               </div>
-              <div className="text-white/40 text-sm">{stat.label}</div>
+              <div className="text-white/40 text-xs md:text-sm">{stat.label}</div>
             </motion.div>
           ))}
         </motion.div>
 
-        {/* Enhanced CTA */}
+        {/* CTA */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.4 }}
-          className="text-center mt-20"
+          className="text-center mt-12 md:mt-20"
         >
           <div className="relative inline-block group">
-            {/* Animated rings */}
             <motion.div
-              animate={{
-                scale: [1, 1.2, 1],
-                opacity: [0.3, 0.6, 0.3],
-              }}
-              transition={{
-                duration: 3,
-                repeat: Infinity,
-                ease: "easeInOut",
-              }}
+              animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.6, 0.3] }}
+              transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
               className="absolute -inset-3 bg-gradient-to-r from-[#e8c97e] via-purple-400 to-pink-400 rounded-full blur-xl opacity-30"
             />
-            
+
             <motion.a
               href="/apply"
-              className="relative inline-flex items-center gap-3 px-10 py-5 rounded-2xl bg-gradient-to-r from-[#e8c97e] to-[#f0d89a] text-black font-semibold text-lg overflow-hidden group"
+              className="relative inline-flex items-center gap-3 px-8 md:px-10 py-4 md:py-5 rounded-2xl bg-gradient-to-r from-[#e8c97e] to-[#f0d89a] text-black font-semibold text-base md:text-lg overflow-hidden group"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.97 }}
             >
-              {/* Shine effect */}
               <motion.div
-                animate={{
-                  x: ["-100%", "200%"],
-                }}
-                transition={{
-                  duration: 2,
-                  repeat: Infinity,
-                  ease: "linear",
-                }}
+                animate={{ x: ["-100%", "200%"] }}
+                transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
                 className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent skew-x-12"
               />
-              
               <span className="relative">Claim Your Spot</span>
               <svg
                 className="relative w-5 h-5 group-hover:translate-x-1 transition-transform"
@@ -325,22 +277,17 @@ export default function WhatYouGetSection() {
                 viewBox="0 0 24 24"
                 stroke="currentColor"
               >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M13 7l5 5m0 0l-5 5m5-5H6"
-                />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
               </svg>
             </motion.a>
           </div>
-          
+
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ delay: 0.6 }}
-            className="mt-6 flex items-center justify-center gap-6 text-sm"
+            className="mt-6 flex items-center justify-center gap-4 md:gap-6 text-xs md:text-sm"
           >
             <div className="flex items-center gap-2 text-white/40">
               <svg className="w-4 h-4 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">

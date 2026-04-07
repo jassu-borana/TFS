@@ -111,7 +111,7 @@ export default function HostSection() {
   transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
 >
   <img
-    src="/logo.png"
+    src="../logo.png"
     alt="Host"
     className="w-[85%] h-[85%] object-contain"
   />

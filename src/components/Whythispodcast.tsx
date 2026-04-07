@@ -1,333 +1,308 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Mic, Heart, TrendingUp, Users, Star, Sparkles } from "lucide-react";
+import { useState } from "react";
 
-export default function WhyThisPodcast() {
+const ITEMS = [
+  {
+    emoji: "🎙️",
+    title: "90-Minute Deep Dive Interview",
+    desc: "A focused, in-studio conversation that brings out the real story behind your journey - guided, structured, and built to create meaningful content you can actually use.",
+    color: "#e8c97e",
+    bgColor: "rgba(232,201,126,0.1)",
+    borderColor: "rgba(232,201,126,0.2)",
+  },
+  {
+    emoji: "🎬",
+    title: "Professional Video Production",
+    desc: "Shot in a multi-camera studio setup with clean, cinematic edits that reflect the quality of your brand - not just another podcast recording.",
+    color: "#a78bfa",
+    bgColor: "rgba(167,139,250,0.1)",
+    borderColor: "rgba(167,139,250,0.2)",
+  },
+  {
+    emoji: "📱",
+    title: "Social Media Amplification Package",
+    desc: "Carefully edited short-form content, designed for reach and relevance - distributed across platforms where your audience is already paying attention.",
+    color: "#4ade80",
+    bgColor: "rgba(74,222,128,0.1)",
+    borderColor: "rgba(74,222,128,0.2)",
+  },
+  {
+    emoji: "📊",
+    title: "Startup Community Reach",
+    desc: "Your story doesn't just stay on the internet - it reaches curated founder and investor communities through targeted distribution.",
+    color: "#f87171",
+    bgColor: "rgba(248,113,113,0.1)",
+    borderColor: "rgba(248,113,113,0.2)",
+  },
+  {
+    emoji: "©️",
+    title: "Lifetime Content Usage Rights",
+    desc: "This isn't rented visibility. Every piece of content is yours to use across ads, pitches, decks, and brand building - whenever you need it.",
+    color: "#60a5fa",
+    bgColor: "rgba(96,165,250,0.1)",
+    borderColor: "rgba(96,165,250,0.2)",
+  },
+  {
+    emoji: "🌐",
+    title: "TFD Power Network Access",
+    desc: "Access to a trusted circle of founders, operators, and decision-makers - where conversations can turn into real opportunities.",
+    color: "#fbbf24",
+    bgColor: "rgba(251,191,36,0.1)",
+    borderColor: "rgba(251,191,36,0.2)",
+  },
+];
+
+export default function WhatYouGetSection() {
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+
   return (
-    <section className="relative bg-black py-28 px-4 md:px-8 lg:px-16 overflow-hidden">
+    <section className="relative overflow-hidden py-28 px-4 bg-black">
       {/* Black Grid Background */}
       <div className="absolute inset-0 pointer-events-none">
-        {/* Grid pattern */}
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff08_1px,transparent_1px),linear-gradient(to_bottom,#ffffff08_1px,transparent_1px)] bg-[size:48px_48px]" />
-        
-        {/* Radial gradient for depth */}
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,transparent_0%,rgba(0,0,0,0.5)_100%)]" />
-        
-        {/* Animated orbs */}
-        <motion.div 
+        <motion.div
           className="absolute top-20 left-20 w-96 h-96 bg-[#e8c97e]/5 rounded-full blur-3xl"
-          animate={{ 
-            x: [0, 50, 0],
-            y: [0, -30, 0],
-            scale: [1, 1.2, 1],
-          }}
+          animate={{ x: [0, 50, 0], y: [0, -30, 0], scale: [1, 1.2, 1] }}
           transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
         />
-        <motion.div 
+        <motion.div
           className="absolute bottom-20 right-20 w-96 h-96 bg-[#e8c97e]/5 rounded-full blur-3xl"
-          animate={{ 
-            x: [0, -50, 0],
-            y: [0, 30, 0],
-            scale: [1.2, 1, 1.2],
-          }}
+          animate={{ x: [0, -50, 0], y: [0, 30, 0], scale: [1.2, 1, 1.2] }}
           transition={{ duration: 18, repeat: Infinity, ease: "linear" }}
         />
-        
-        {/* Floating particles */}
         {[...Array(30)].map((_, i) => (
           <motion.div
             key={i}
-            animate={{
-              y: [0, -40, 0],
-              x: [0, 20, 0],
-              opacity: [0, 0.2, 0],
-            }}
-            transition={{
-              duration: 10 + i,
-              repeat: Infinity,
-              delay: i * 0.3,
-            }}
+            animate={{ y: [0, -40, 0], x: [0, 20, 0], opacity: [0, 0.2, 0] }}
+            transition={{ duration: 10 + i, repeat: Infinity, delay: i * 0.3 }}
             className="absolute w-1 h-1 rounded-full bg-[#e8c97e]/30"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-            }}
+            style={{ left: `${Math.random() * 100}%`, top: `${Math.random() * 100}%` }}
           />
         ))}
       </div>
 
       <div className="max-w-7xl mx-auto relative z-10">
-        {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-20"
-        >
-          {/* Decorative top line */}
-          <motion.div 
-            className="flex justify-center gap-2 mb-6"
-            initial={{ scale: 0 }}
-            whileInView={{ scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-          >
-            <div className="w-12 h-0.5 bg-[#e8c97e]/30 rounded-full" />
-            <div className="w-4 h-0.5 bg-[#e8c97e]/60 rounded-full" />
-            <div className="w-2 h-0.5 bg-[#e8c97e] rounded-full" />
-          </motion.div>
-
-          <motion.h2 
-            className="font-bebas text-6xl md:text-8xl text-white tracking-wide mb-6"
+        {/* Heading */}
+        <div className="text-center mb-16">
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.3 }}
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-white/20 backdrop-blur-sm mb-6"
           >
-            WHY THIS{' '}
-            <span className="bg-gradient-to-r from-[#e8c97e] to-[#f0d89a] bg-clip-text text-transparent">
-              PODCAST
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#e8c97e] opacity-75" />
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-[#e8c97e]" />
+            </span>
+            <span className="text-xs font-medium tracking-wider text-white/80 uppercase">
+              Complete Package
+            </span>
+          </motion.div>
+
+          <motion.h2
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
+            className="text-4xl md:text-5xl lg:text-7xl font-bold mb-4"
+          >
+            <span className="text-white">Built for Founders Who</span>
+            <br />
+            <span className="bg-gradient-to-r from-[#e8c97e] via-purple-400 to-pink-400 bg-clip-text text-transparent">
+              Mean Business
             </span>
           </motion.h2>
 
           <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.4 }}
-            className="text-white/60 text-xl max-w-3xl mx-auto font-light leading-relaxed"
+            transition={{ delay: 0.2 }}
+            className="text-white/50 text-sm md:text-lg max-w-2xl mx-auto"
           >
-            Not just another interview podcast. This is a space for real conversations.
+            Everything you need to build authority and visibility — all included in one comprehensive package
           </motion.p>
-        </motion.div>
+        </div>
 
-        {/* Main Value Proposition */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.5 }}
-          className="relative mb-32"
-        >
-          {/* Quote card */}
-          <div className="relative max-w-4xl mx-auto">
-            {/* Large decorative quote mark */}
+        {/* Cards grid — 2 col mobile, 3 col desktop */}
+        <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 md:gap-6">
+          {ITEMS.map((item, i) => (
             <motion.div
-              initial={{ opacity: 0, scale: 0.5 }}
-              whileInView={{ opacity: 0.1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-              className="absolute -top-20 -left-10 text-[200px] font-serif text-[#e8c97e] select-none"
-            >
-              "
-            </motion.div>
-
-            <div className="relative p-12 md:p-16 rounded-3xl bg-white/5 backdrop-blur-sm border border-white/10">
-              <p className="text-white/80 text-2xl md:text-3xl lg:text-4xl font-light leading-relaxed text-center">
-                Each episode is designed to bring you:
-              </p>
-
-              {/* Animated underline */}
-              <motion.div
-                className="h-1 bg-gradient-to-r from-[#e8c97e] to-transparent mx-auto mt-6"
-                initial={{ width: 0 }}
-                whileInView={{ width: "120px" }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8, delay: 0.6 }}
-              />
-            </div>
-          </div>
-        </motion.div>
-
-        {/* Value Points Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-20">
-          {[
-            {
-              icon: <Heart className="w-8 h-8" />,
-              title: "Honest founder journeys",
-              desc: "Raw, unfiltered stories of struggle and triumph from the trenches.",
-              color: "#e8c97e",
-              delay: 0.1
-            },
-            {
-              icon: <TrendingUp className="w-8 h-8" />,
-              title: "Practical business insights",
-              desc: "Actionable wisdom you can apply to your own startup journey.",
-              color: "#a78bfa",
-              delay: 0.2
-            },
-            {
-              icon: <Users className="w-8 h-8" />,
-              title: "A deeper look into success and failure",
-              desc: "The real reasons behind the wins and the lessons from the losses.",
-              color: "#4ade80",
-              delay: 0.3
-            },
-            {
-              icon: <Star className="w-8 h-8" />,
-              title: "Stories that actually stay with you",
-              desc: "Narratives that resonate long after the episode ends.",
-              color: "#f87171",
-              delay: 0.4
-            },
-            {
-              icon: <Mic className="w-8 h-8" />,
-              title: "Recognised as a top interview podcast",
-              desc: "Featured among India's best podcasts for entrepreneurs.",
-              color: "#60a5fa",
-              delay: 0.5
-            },
-            {
-              icon: <Sparkles className="w-8 h-8" />,
-              title: "Trending podcast for entrepreneurs",
-              desc: "Built for those who want direction, not just motivation.",
-              color: "#fbbf24",
-              delay: 0.6
-            }
-          ].map((item, i) => (
-            <motion.div
-              key={i}
+              key={item.title}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: item.delay, duration: 0.5 }}
-              whileHover={{ y: -8, scale: 1.02 }}
-              className="group relative"
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.5, delay: i * 0.1 }}
+              onHoverStart={() => setHoveredIndex(i)}
+              onHoverEnd={() => setHoveredIndex(null)}
+              className="group relative h-full"
             >
-              {/* Glow effect on hover */}
+              {/* Card glow on hover */}
               <motion.div
-                className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-20 transition-opacity duration-500 blur-xl"
+                animate={{
+                  opacity: hoveredIndex === i ? 0.5 : 0,
+                  scale: hoveredIndex === i ? 1.1 : 1,
+                }}
+                transition={{ duration: 0.3 }}
+                className="absolute -inset-2 rounded-3xl blur-2xl"
                 style={{ background: item.color }}
               />
 
-              {/* Card */}
-              <div
-                className="relative p-8 rounded-2xl bg-white/5 border border-white/10 hover:border-[#e8c97e]/30 transition-all duration-300 h-full backdrop-blur-sm"
+              {/* Main card */}
+              <motion.div
+                animate={{ y: hoveredIndex === i ? -4 : 0 }}
+                transition={{ duration: 0.3 }}
+                className="relative h-full p-4 md:p-8 rounded-2xl bg-white/5 backdrop-blur-sm border-2 transition-all duration-300 overflow-hidden"
+                style={{
+                  borderColor: hoveredIndex === i ? item.color : "rgba(255,255,255,0.1)",
+                  background: hoveredIndex === i ? item.bgColor : "rgba(255,255,255,0.05)",
+                }}
               >
                 {/* Icon */}
-                <motion.div
-                  className="w-16 h-16 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300"
-                  style={{ background: `${item.color}20`, border: `1px solid ${item.color}40` }}
-                >
-                  <span style={{ color: item.color }}>{item.icon}</span>
-                </motion.div>
+                <div className="relative mb-3 md:mb-6">
+                  <div
+                    className="w-10 h-10 md:w-16 md:h-16 rounded-xl flex items-center justify-center text-xl md:text-3xl transition-all duration-300"
+                    style={{
+                      background: item.bgColor,
+                      border: `2px solid ${item.borderColor}`,
+                      color: item.color,
+                    }}
+                  >
+                    {item.emoji}
+                  </div>
+
+                  {hoveredIndex === i && (
+                    <motion.div
+                      initial={{ scale: 0 }}
+                      animate={{ scale: 1 }}
+                      className="absolute -top-1 -right-1 w-3 h-3 md:w-4 md:h-4 rounded-full border-2 border-black"
+                      style={{ background: item.color }}
+                    />
+                  )}
+                </div>
 
                 {/* Title */}
-                <h3 className="text-2xl font-bold mb-3" style={{ color: item.color }}>
+                <h3 className="text-sm md:text-xl font-bold text-white mb-2 md:mb-3 leading-snug">
                   {item.title}
                 </h3>
 
-                {/* Description */}
-                <p className="text-white/50 text-base leading-relaxed">
+                {/* Description — hidden on mobile, visible md+ */}
+                <p className="hidden md:block text-white/50 text-sm leading-relaxed">
                   {item.desc}
                 </p>
 
                 {/* Bottom accent line */}
                 <motion.div
-                  className="absolute bottom-0 left-0 right-0 h-0.5 rounded-b-2xl"
-                  initial={{ width: 0 }}
-                  whileInView={{ width: "100%" }}
-                  viewport={{ once: true }}
-                  transition={{ delay: item.delay + 0.3, duration: 0.6 }}
+                  initial={{ width: "0%" }}
+                  animate={{ width: hoveredIndex === i ? "100%" : "0%" }}
+                  transition={{ duration: 0.3 }}
+                  className="absolute bottom-0 left-0 h-1 rounded-b-2xl"
                   style={{ background: `linear-gradient(90deg, ${item.color}, transparent)` }}
                 />
-              </div>
+
+                {/* Corner accents */}
+                <div
+                  className="absolute top-4 left-4 w-4 h-4 border-l-2 border-t-2 rounded-tl-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                  style={{ borderColor: item.color }}
+                />
+                <div
+                  className="absolute bottom-4 right-4 w-4 h-4 border-r-2 border-b-2 rounded-br-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                  style={{ borderColor: item.color }}
+                />
+              </motion.div>
             </motion.div>
           ))}
         </div>
 
-        {/* Closing Statement */}
+        {/* Stats — 2 col mobile, 4 col desktop */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ delay: 0.7 }}
-          className="text-center max-w-3xl mx-auto"
-        >
-          <div className="relative p-10 rounded-3xl bg-gradient-to-b from-white/10 to-white/5 border border-white/10">
-            <motion.p
-              className="text-white/80 text-xl md:text-2xl font-light leading-relaxed"
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.8 }}
-            >
-              This show is built for those who want more than just motivation —{' '}
-              <span className="text-[#e8c97e] font-semibold">they want direction.</span>
-            </motion.p>
-
-            {/* Decorative quote marks */}
-            <motion.div
-              className="absolute -bottom-4 -right-4 text-6xl text-[#e8c97e]/20 font-serif"
-              animate={{ rotate: [0, 5, 0] }}
-              transition={{ duration: 4, repeat: Infinity }}
-            >
-              "
-            </motion.div>
-            <motion.div
-              className="absolute -top-4 -left-4 text-6xl text-[#e8c97e]/20 font-serif rotate-180"
-              animate={{ rotate: [180, 185, 180] }}
-              transition={{ duration: 4, repeat: Infinity }}
-            >
-              "
-            </motion.div>
-          </div>
-        </motion.div>
-
-        {/* Recognition Badges */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.9 }}
-          className="flex flex-wrap justify-center gap-4 mt-16"
+          transition={{ delay: 0.3 }}
+          className="mt-12 md:mt-20 grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4"
         >
           {[
-            "🎙️ Top Interview Podcast • India",
-            "📈 Trending • Entrepreneurs",
-            "⭐ 4.9 Rating • Apple Podcasts",
-            "🎧 500K+ Downloads"
-          ].map((badge, i) => (
+            { value: "100+", label: "Founders Featured", color: "#e8c97e" },
+            { value: "50M+", label: "Total Reach", color: "#a78bfa" },
+            { value: "6-8", label: "Weeks to Launch", color: "#4ade80" },
+            { value: "100%", label: "Content Ownership", color: "#60a5fa" },
+          ].map((stat, i) => (
             <motion.div
               key={i}
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: 1 + i * 0.1 }}
-              whileHover={{ scale: 1.05, backgroundColor: "rgba(232,201,126,0.1)" }}
-              className="px-6 py-3 rounded-full bg-white/5 border border-white/10 text-white/60 text-sm font-medium backdrop-blur-sm"
+              whileHover={{ y: -4, scale: 1.02 }}
+              className="text-center p-4 md:p-6 rounded-2xl bg-white/5 border-2 border-white/10 hover:border-[#e8c97e]/30 transition-all backdrop-blur-sm"
             >
-              {badge}
+              <div className="text-2xl md:text-4xl font-bold mb-1 md:mb-2" style={{ color: stat.color }}>
+                {stat.value}
+              </div>
+              <div className="text-white/40 text-xs md:text-sm">{stat.label}</div>
             </motion.div>
           ))}
         </motion.div>
 
-        {/* Bottom CTA */}
+        {/* CTA */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ delay: 1.2 }}
-          className="text-center mt-20"
+          transition={{ delay: 0.4 }}
+          className="text-center mt-12 md:mt-20"
         >
-          <motion.a
-            href="/apply"
-            className="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-gradient-to-r from-[#e8c97e] to-[#f0d89a] text-black font-semibold group"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <span>Experience the Difference</span>
-            <svg
-              className="w-5 h-5 group-hover:translate-x-1 transition-transform"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
+          <div className="relative inline-block group">
+            <motion.div
+              animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.6, 0.3] }}
+              transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+              className="absolute -inset-3 bg-gradient-to-r from-[#e8c97e] via-purple-400 to-pink-400 rounded-full blur-xl opacity-30"
+            />
+
+            <motion.a
+              href="/apply"
+              className="relative inline-flex items-center gap-3 px-8 md:px-10 py-4 md:py-5 rounded-2xl bg-gradient-to-r from-[#e8c97e] to-[#f0d89a] text-black font-semibold text-base md:text-lg overflow-hidden group"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.97 }}
             >
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-            </svg>
-          </motion.a>
+              <motion.div
+                animate={{ x: ["-100%", "200%"] }}
+                transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+                className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent skew-x-12"
+              />
+              <span className="relative">Claim Your Spot</span>
+              <svg
+                className="relative w-5 h-5 group-hover:translate-x-1 transition-transform"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+              </svg>
+            </motion.a>
+          </div>
+
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.6 }}
+            className="mt-6 flex items-center justify-center gap-4 md:gap-6 text-xs md:text-sm"
+          >
+            <div className="flex items-center gap-2 text-white/40">
+              <svg className="w-4 h-4 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+              </svg>
+              <span>Limited slots available</span>
+            </div>
+            <div className="w-px h-4 bg-white/20" />
+            <div className="flex items-center gap-2 text-white/40">
+              <svg className="w-4 h-4 text-[#e8c97e]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <span>Next batch starting soon</span>
+            </div>
+          </motion.div>
         </motion.div>
       </div>
     </section>
